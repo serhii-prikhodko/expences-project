@@ -10,7 +10,6 @@ import UIKit
 class ViewController: UIViewController {
     
     var expences: Expences?
-    //var jsonParser: JSONParserProtocol
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +24,6 @@ class ViewController: UIViewController {
                 switch result {
                 case .success(let expences):
                     self.expences = expences
-                    print(self.expences)
                 case .failure(let error):
                     print(error)
                 }

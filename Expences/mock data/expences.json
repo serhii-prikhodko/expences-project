@@ -8,19 +8,19 @@
           "EXPENSE": [
             {
               "WHAT": "Beer",
-              "AMOUNT": 18.00
+              "AMOUNT": 18
             },
             {
               "WHAT": "Food",
-              "AMOUNT": 12.00
+              "AMOUNT": 12
             },
             {
               "WHAT": "Food",
-              "AMOUNT": 19.00
+              "AMOUNT": 19
             },
             {
               "WHAT": "Car",
-              "AMOUNT": 20.00
+              "AMOUNT": 20
             }
           ]
         },
@@ -29,23 +29,23 @@
           "EXPENSE": [
             {
               "WHAT": "Beer",
-              "AMOUNT": 19.00
+              "AMOUNT": 19
             },
             {
               "WHAT": "Beer",
-              "AMOUNT": 16.00
+              "AMOUNT": 16
             },
             {
               "WHAT": "Food",
-              "AMOUNT": 17.00
+              "AMOUNT": 17
             },
             {
               "WHAT": "Food",
-              "AMOUNT": 17.00
+              "AMOUNT": 17
             },
             {
               "WHAT": "Beer",
-              "AMOUNT": 14.00
+              "AMOUNT": 14
             }
           ]
         },
@@ -54,11 +54,11 @@
           "EXPENSE": [
             {
               "WHAT": "Beer",
-              "AMOUNT": 14.00
+              "AMOUNT": 14
             },
             {
               "WHAT": "Food",
-              "AMOUNT": 12.00
+              "AMOUNT": 12
             }
           ]
         }
@@ -72,7 +72,7 @@
           "EXPENSE": [
             {
               "WHAT": "Beer",
-              "AMOUNT": 16.00
+              "AMOUNT": 16
             }
           ]
         },
@@ -81,11 +81,11 @@
           "EXPENSE": [
             {
               "WHAT": "Food",
-              "AMOUNT": 17.00
+              "AMOUNT": 17
             },
             {
               "WHAT": "Beer",
-              "AMOUNT": 15.00
+              "AMOUNT": 15
             }
           ]
         },
@@ -94,11 +94,11 @@
           "EXPENSE": [
             {
               "WHAT": "Food",
-              "AMOUNT": 12.00
+              "AMOUNT": 12
             },
             {
               "WHAT": "Beer",
-              "AMOUNT": 20.00
+              "AMOUNT": 20
             }
           ]
         }
@@ -112,15 +112,15 @@
           "EXPENSE": [
             {
               "WHAT": "Car",
-              "AMOUNT": 19.00
+              "AMOUNT": 19
             },
             {
               "WHAT": "Food",
-              "AMOUNT": 18.00
+              "AMOUNT": 18
             },
             {
               "WHAT": "Beer",
-              "AMOUNT": 18.00
+              "AMOUNT": 18
             }
           ]
         },
@@ -129,7 +129,7 @@
           "EXPENSE": [
             {
               "WHAT": "Car",
-              "AMOUNT": 17.00
+              "AMOUNT": 17
             }
           ]
         },
@@ -138,19 +138,19 @@
           "EXPENSE": [
             {
               "WHAT": "Beer",
-              "AMOUNT": 14.00
+              "AMOUNT": 14
             },
             {
               "WHAT": "Car",
-              "AMOUNT": 12.00
+              "AMOUNT": 12
             },
             {
               "WHAT": "Beer",
-              "AMOUNT": 19.00
+              "AMOUNT": 19
             },
             {
               "WHAT": "Food",
-              "AMOUNT": 12.00
+              "AMOUNT": 12
             }
           ]
         }
@@ -164,11 +164,11 @@
           "EXPENSE": [
             {
               "WHAT": "Cat",
-              "AMOUNT": 19.00
+              "AMOUNT": 19
             },
             {
               "WHAT": "Food",
-              "AMOUNT": 18.00
+              "AMOUNT": 18
             }
           ]
         },
@@ -177,7 +177,7 @@
           "EXPENSE": [
             {
               "WHAT": "Car",
-              "AMOUNT": 17.00
+              "AMOUNT": 17
             }
           ]
         },
@@ -186,15 +186,15 @@
           "EXPENSE": [
             {
               "WHAT": "Beer",
-              "AMOUNT": 14.00
+              "AMOUNT": 14
             },
             {
               "WHAT": "Car",
-              "AMOUNT": 12.00
+              "AMOUNT": 12
             },
             {
               "WHAT": "Food",
-              "AMOUNT": 12.00
+              "AMOUNT": 12
             }
           ]
         }

@@ -12,6 +12,6 @@ public struct DailyExpences: Codable {
     public let dailyExpences: [Expence]?
     
     enum CodingKeys : String, CodingKey {
-            case dailyExpences = "EXPENSE"
-        }
+        case dailyExpences = "EXPENSE"
+    }
 }
