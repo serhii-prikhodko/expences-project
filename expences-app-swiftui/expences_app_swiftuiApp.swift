@@ -1,6 +1,6 @@
 //
-//  expences_app_swiftuiApp.swift
-//  expences-app-swiftui
+//  expenses_app_swiftuiApp.swift
+//  expenses-app-swiftui
 //
 //  Created by Serhii Prykhodko on 08.10.2020.
 //

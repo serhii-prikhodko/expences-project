@@ -1,22 +1,22 @@
 //
-//  Expences.swift
-//  Expences
+//  Expenses.swift
+//  Expenses
 //
 //  Created by Serhii Prykhodko on 06.10.2020.
 //
 
 import Foundation
 
-public struct Expences: Codable {
+public struct Expenses: Codable {
     
-    public let expences: [WeeklyExpences]?
+    public let expenses: [ExpensesByPerson]
     
     enum CodingKeys: String, CodingKey {
-        case expences = "expences"
+        case expenses = "expenses"
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.expences = try container.decode([WeeklyExpences].self, forKey: .expences)
+        self.expenses = try container.decode([ExpensesByPerson].self, forKey: .expenses)
     }
 }

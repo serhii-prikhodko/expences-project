@@ -10,11 +10,9 @@ import SwiftUI
 struct LaunchScreenView: View {
     var body: some View {
         NavigationView {
-            VStack {
-                NavigationLink(destination: ExpencesUIView()) {
-                    Text("Show Expences")
+                NavigationLink(destination: ExpensesUIView()) {
+                    Text("Show Expenses")
                 }
-            }
         }
     }
 }

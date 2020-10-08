@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "9D3A0D65-F737-43B9-83B9-2091529A8774"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F7455860-E7C0-49D3-BE77-8450F783112D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "expences-app-swiftui/Views/ExpencesUIView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "ExpensesUIView"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A8DDDCA0-6FC8-4C29-8005-FEC0EA32CB5A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "expences-app-swiftui/Views/ExpencesUIView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "A8DDDCA0-6FC8-4C29-8005-FEC0EA32CB5A - e4d5560c389a9444"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;expences_app_swiftui.Expence&gt;, Swift.Int, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Text)&gt;&gt;&gt; in closure #1 (expences_app_swiftui.ExpencesByPerson) -&gt; SwiftUI.Section&lt;SwiftUI.Text, SwiftUI.ForEach&lt;Swift.Array&lt;expences_app_swiftui.Expence&gt;, Swift.Int, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Text)&gt;&gt;&gt;, SwiftUI.EmptyView&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;expences_app_swiftui.ExpencesByPerson&gt;, Swift.Int, SwiftUI.Section&lt;SwiftUI.Text, SwiftUI.ForEach&lt;Swift.Array&lt;expences_app_swiftui.Expence&gt;, Swift.Int, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Text)&gt;&gt;&gt;, SwiftUI.EmptyView&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.listStyle&lt;A where A1: SwiftUI.ListStyle&gt;(A1) -&gt; some&gt;&gt;.0 in expences_app_swiftui.ExpencesUIView.body.getter : some"
+                  moduleName = "expences-app-swiftui"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/spryk/Documents/code_examples/Expences/expences-app-swiftui/Views/ExpencesUIView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "277">
+               </Location>
+               <Location
+                  uuid = "A8DDDCA0-6FC8-4C29-8005-FEC0EA32CB5A - cd3a8788419cef33"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (expences_app_swiftui.Expence) -&gt; SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Text)&gt;&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;expences_app_swiftui.Expence&gt;, Swift.Int, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Text)&gt;&gt;&gt; in closure #1 (expences_app_swiftui.ExpencesByPerson) -&gt; SwiftUI.Section&lt;SwiftUI.Text, SwiftUI.ForEach&lt;Swift.Array&lt;expences_app_swiftui.Expence&gt;, Swift.Int, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Text)&gt;&gt;&gt;, SwiftUI.EmptyView&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;expences_app_swiftui.ExpencesByPerson&gt;, Swift.Int, SwiftUI.Section&lt;SwiftUI.Text, SwiftUI.ForEach&lt;Swift.Array&lt;expences_app_swiftui.Expence&gt;, Swift.Int, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Text)&gt;&gt;&gt;, SwiftUI.EmptyView&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.listStyle&lt;A where A1: SwiftUI.ListStyle&gt;(A1) -&gt; some&gt;&gt;.0 in expences_app_swiftui.ExpencesUIView.body.getter : some"
+                  moduleName = "expences-app-swiftui"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/spryk/Documents/code_examples/Expences/expences-app-swiftui/Views/ExpencesUIView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "137">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

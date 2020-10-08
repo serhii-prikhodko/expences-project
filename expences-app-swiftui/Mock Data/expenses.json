@@ -1,62 +1,77 @@
 {
-  "expences": [
+  "expenses": [
     {
+      "ID": 1,
       "WHO": "Joe",
       "WEEK": [
         {
+          "ID": 1,
           "NUMBER": 3,
           "EXPENSE": [
             {
+              "ID": 1,
               "WHAT": "Beer",
               "AMOUNT": 18
             },
             {
+              "ID": 2,
               "WHAT": "Food",
               "AMOUNT": 12
             },
             {
+              "ID": 3,
               "WHAT": "Food",
               "AMOUNT": 19
             },
             {
+              "ID": 4,
               "WHAT": "Car",
               "AMOUNT": 20
             }
           ]
         },
         {
+          "ID": 2,
           "NUMBER": 4,
           "EXPENSE": [
             {
+              "ID": 5,
               "WHAT": "Beer",
               "AMOUNT": 19
             },
             {
+              "ID": 6,
               "WHAT": "Beer",
               "AMOUNT": 16
             },
             {
+              "ID": 7,
               "WHAT": "Food",
               "AMOUNT": 17
             },
             {
+              "ID": 8,
               "WHAT": "Food",
               "AMOUNT": 17
             },
             {
+              "ID": 9,
               "WHAT": "Beer",
               "AMOUNT": 14
             }
           ]
         },
         {
+          "ID": 3,
           "NUMBER": 5,
           "EXPENSE": [
             {
+              "ID": 10,
               "WHAT": "Beer",
               "AMOUNT": 14
             },
             {
+              "ID": 11,
               "WHAT": "Food",
               "AMOUNT": 12
             }
@@ -65,38 +80,47 @@
       ]
     },
     {
+      "ID": 2,
       "WHO": "Beth",
       "WEEK": [
         {
+          "ID": 1,
           "NUMBER": 3,
           "EXPENSE": [
             {
+              "ID": 1,
               "WHAT": "Beer",
               "AMOUNT": 16
             }
           ]
         },
         {
+          "ID": 2,
           "NUMBER": 4,
           "EXPENSE": [
             {
+              "ID": 2,
               "WHAT": "Food",
               "AMOUNT": 17
             },
             {
+              "ID": 3,
               "WHAT": "Beer",
               "AMOUNT": 15
             }
           ]
         },
         {
+          "ID": 3,
           "NUMBER": 5,
           "EXPENSE": [
             {
+              "ID": 4,
               "WHAT": "Food",
               "AMOUNT": 12
             },
             {
+              "ID": 5,
               "WHAT": "Beer",
               "AMOUNT": 20
             }
@@ -105,50 +129,62 @@
       ]
     },
     {
+      "ID": 3,
       "WHO": "Janet",
       "WEEK": [
         {
+          "ID": 1,
           "NUMBER": 3,
           "EXPENSE": [
             {
+              "ID": 1,
               "WHAT": "Car",
               "AMOUNT": 19
             },
             {
+              "ID": 2,
               "WHAT": "Food",
               "AMOUNT": 18
             },
             {
+              "ID": 3,
               "WHAT": "Beer",
               "AMOUNT": 18
             }
           ]
         },
         {
+          "ID": 2,
           "NUMBER": 4,
           "EXPENSE": [
             {
+              "ID": 4,
               "WHAT": "Car",
               "AMOUNT": 17
             }
           ]
         },
         {
+          "ID": 3,
           "NUMBER": 5,
           "EXPENSE": [
             {
+              "ID": 5,
               "WHAT": "Beer",
               "AMOUNT": 14
             },
             {
+              "ID": 6,
               "WHAT": "Car",
               "AMOUNT": 12
             },
             {
+              "ID": 7,
               "WHAT": "Beer",
               "AMOUNT": 19
             },
             {
+              "ID": 8,
               "WHAT": "Food",
               "AMOUNT": 12
             }
@@ -157,42 +193,52 @@
       ]
     },
     {
+      "ID": 4,
       "WHO": "Lisa",
       "WEEK": [
         {
+          "ID": 1,
           "NUMBER": 3,
           "EXPENSE": [
             {
+              "ID": 1,
               "WHAT": "Cat",
               "AMOUNT": 19
             },
             {
+              "ID": 2,
               "WHAT": "Food",
               "AMOUNT": 18
             }
           ]
         },
         {
+          "ID": 2,
           "NUMBER": 4,
           "EXPENSE": [
             {
+              "ID": 3,
               "WHAT": "Car",
               "AMOUNT": 17
             }
           ]
         },
         {
+          "ID": 3,
           "NUMBER": 5,
           "EXPENSE": [
             {
+              "ID": 4,
               "WHAT": "Beer",
               "AMOUNT": 14
             },
             {
+              "ID": 5,
               "WHAT": "Car",
               "AMOUNT": 12
             },
             {
+              "ID": 6,
               "WHAT": "Food",
               "AMOUNT": 12
             }
