@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LaunchViewController: UIViewController {
     
     var expences: Expences?
     
