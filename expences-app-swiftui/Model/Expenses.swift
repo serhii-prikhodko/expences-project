@@ -9,6 +9,7 @@ import Foundation
 
 public struct Expenses: Codable {
     
+    public let id = UUID()
     public let expenses: [ExpensesByPerson]
     
     enum CodingKeys: String, CodingKey {

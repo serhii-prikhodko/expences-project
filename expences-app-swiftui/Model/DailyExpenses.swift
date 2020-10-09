@@ -9,11 +9,10 @@ import Foundation
 
 public struct DailyExpenses: Codable, Identifiable {
     
-    public let id: Int
+    public let id = UUID()
     public let dailyExpenses: [Expense]
     
     enum CodingKeys : String, CodingKey {
         case dailyExpenses = "EXPENSE"
-        case id = "ID"
     }
 }

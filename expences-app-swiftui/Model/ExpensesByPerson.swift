@@ -9,13 +9,12 @@ import Foundation
 
 public struct ExpensesByPerson: Codable,Identifiable {
     
-    public let id: Int
+    public let id = UUID()
     public let name: String
     public let weeklyExpenses: [DailyExpenses]
     
     enum CodingKeys: String, CodingKey {
         case name = "WHO"
         case weeklyExpenses = "WEEK"
-        case id = "ID"
     }
 }

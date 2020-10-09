@@ -9,12 +9,11 @@ import Foundation
 
 public struct Expense: Codable, Identifiable {
     
-    public let id: Int
+    public let id = UUID()
     public let name: String
     public let amount: Double
     
     enum CodingKeys : String, CodingKey {
-            case id = "ID"
             case name = "WHAT"
             case amount = "AMOUNT"
         }

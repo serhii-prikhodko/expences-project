@@ -22,6 +22,6 @@ struct ExpenseRow: View {
 
 struct ExpenseRow_Previews: PreviewProvider {
     static var previews: some View {
-        ExpenseRow(expense: Expense(id: 1, name: "Apples", amount: 9.00))
+        ExpenseRow(expense: Expense(name: "Apples", amount: 9.00))
     }
 }
