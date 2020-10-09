@@ -14,11 +14,10 @@ struct ExpensesListUIView: View {
         List {
             ForEach(data.expenses) { person in
                 Section(header: Text(person.name)) {
-                    let allPersonExpensesArray = returnDailyArray(expensesByPerson: person)
-                    ForEach(allPersonExpensesArray) { expense in
-                        HStack {
-                            ExpenseRow(expense: expense)
-                        }
+                    ForEach(0..<person.weeklyExpenses.count) { index in
+                        Text("Day \(1 + index)")
+                            .foregroundColor(Color.blue)
+                        ExpensesByDay(expensesByDay: person.weeklyExpenses[index].dailyExpenses)
                     }
                 }
             }
@@ -26,20 +25,22 @@ struct ExpensesListUIView: View {
         .navigationBarTitle("Expenses", displayMode: .inline)
         .listStyle(GroupedListStyle())
     }
-    func returnDailyArray(expensesByPerson: ExpensesByPerson) -> [Expense] {
-        var array = [Expense]()
-        for dailyExpenses in expensesByPerson.weeklyExpenses {
-            for expense in dailyExpenses.dailyExpenses {
-                array.append(expense)
-            }
-        }
-        
-        return array
-    }
 }
 
 struct ExpensesUIView_Previews: PreviewProvider {
     static var previews: some View {
         ExpensesListUIView()
+    }
+}
+
+struct ExpensesByDay: View {
+    
+    let expensesByDay: [Expense]
+    var body: some View {
+        ForEach(expensesByDay) { expense in
+            HStack {
+                ExpenseRow(expense: expense)
+            }
+        }
     }
 }

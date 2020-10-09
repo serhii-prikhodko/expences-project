@@ -14,6 +14,7 @@ struct ExpenseRow: View {
         HStack {
             Text(expense.name)
                 .fontWeight(.bold)
+                .padding(.leading)
             Spacer()
             Text("$ \(expense.amount, specifier: "%.2f")")
         }
