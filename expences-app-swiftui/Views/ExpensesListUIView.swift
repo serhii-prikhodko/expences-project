@@ -11,21 +11,20 @@ struct ExpensesListUIView: View {
     
     let data = JSONParser.parse(from: "expenses")
     var body: some View {
-        let expensesAll = data.expenses
-            List {
-                ForEach(expensesAll) { person in
-                    Section(header: Text(person.name)) {
-                        let allPersonExpensesArray = returnDailyArray(expensesByPerson: person)
-                        ForEach(allPersonExpensesArray) { expense in
-                                HStack {
-                                    ExpenseRow(expense: expense)
-                                }
+        List {
+            ForEach(data.expenses) { person in
+                Section(header: Text(person.name)) {
+                    let allPersonExpensesArray = returnDailyArray(expensesByPerson: person)
+                    ForEach(allPersonExpensesArray) { expense in
+                        HStack {
+                            ExpenseRow(expense: expense)
                         }
                     }
                 }
             }
-            .navigationBarTitle(Text("Expenses"))
-            .listStyle(GroupedListStyle())
+        }
+        .navigationBarTitle("Expenses", displayMode: .inline)
+        .listStyle(GroupedListStyle())
     }
     func returnDailyArray(expensesByPerson: ExpensesByPerson) -> [Expense] {
         var array = [Expense]()
