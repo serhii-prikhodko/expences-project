@@ -11,7 +11,7 @@ public struct Expense: Codable, Identifiable {
     
     public let id: Int
     public let name: String
-    public let amount: Int
+    public let amount: Double
     
     enum CodingKeys : String, CodingKey {
             case id = "ID"

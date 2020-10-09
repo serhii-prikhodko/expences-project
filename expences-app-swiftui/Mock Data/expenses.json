@@ -11,22 +11,22 @@
             {
               "ID": 1,
               "WHAT": "Beer",
-              "AMOUNT": 18
+              "AMOUNT": 18.00
             },
             {
               "ID": 2,
               "WHAT": "Food",
-              "AMOUNT": 12
+              "AMOUNT": 12.00
             },
             {
               "ID": 3,
               "WHAT": "Food",
-              "AMOUNT": 19
+              "AMOUNT": 19.00
             },
             {
               "ID": 4,
               "WHAT": "Car",
-              "AMOUNT": 20
+              "AMOUNT": 20.00
             }
           ]
         },
@@ -37,27 +37,27 @@
             {
               "ID": 5,
               "WHAT": "Beer",
-              "AMOUNT": 19
+              "AMOUNT": 19.00
             },
             {
               "ID": 6,
               "WHAT": "Beer",
-              "AMOUNT": 16
+              "AMOUNT": 16.00
             },
             {
               "ID": 7,
               "WHAT": "Food",
-              "AMOUNT": 17
+              "AMOUNT": 17.00
             },
             {
               "ID": 8,
               "WHAT": "Food",
-              "AMOUNT": 17
+              "AMOUNT": 17.00
             },
             {
               "ID": 9,
               "WHAT": "Beer",
-              "AMOUNT": 14
+              "AMOUNT": 14.00
             }
           ]
         },
@@ -68,12 +68,12 @@
             {
               "ID": 10,
               "WHAT": "Beer",
-              "AMOUNT": 14
+              "AMOUNT": 14.00
             },
             {
               "ID": 11,
               "WHAT": "Food",
-              "AMOUNT": 12
+              "AMOUNT": 12.00
             }
           ]
         }
@@ -90,7 +90,7 @@
             {
               "ID": 1,
               "WHAT": "Beer",
-              "AMOUNT": 16
+              "AMOUNT": 16.00
             }
           ]
         },
@@ -101,12 +101,12 @@
             {
               "ID": 2,
               "WHAT": "Food",
-              "AMOUNT": 17
+              "AMOUNT": 17.00
             },
             {
               "ID": 3,
               "WHAT": "Beer",
-              "AMOUNT": 15
+              "AMOUNT": 15.00
             }
           ]
         },
@@ -117,12 +117,12 @@
             {
               "ID": 4,
               "WHAT": "Food",
-              "AMOUNT": 12
+              "AMOUNT": 12.00
             },
             {
               "ID": 5,
               "WHAT": "Beer",
-              "AMOUNT": 20
+              "AMOUNT": 20.00
             }
           ]
         }
@@ -139,17 +139,17 @@
             {
               "ID": 1,
               "WHAT": "Car",
-              "AMOUNT": 19
+              "AMOUNT": 19.00
             },
             {
               "ID": 2,
               "WHAT": "Food",
-              "AMOUNT": 18
+              "AMOUNT": 18.00
             },
             {
               "ID": 3,
               "WHAT": "Beer",
-              "AMOUNT": 18
+              "AMOUNT": 18.00
             }
           ]
         },
@@ -160,7 +160,7 @@
             {
               "ID": 4,
               "WHAT": "Car",
-              "AMOUNT": 17
+              "AMOUNT": 17.00
             }
           ]
         },
@@ -171,22 +171,22 @@
             {
               "ID": 5,
               "WHAT": "Beer",
-              "AMOUNT": 14
+              "AMOUNT": 14.00
             },
             {
               "ID": 6,
               "WHAT": "Car",
-              "AMOUNT": 12
+              "AMOUNT": 12.00
             },
             {
               "ID": 7,
               "WHAT": "Beer",
-              "AMOUNT": 19
+              "AMOUNT": 19.00
             },
             {
               "ID": 8,
               "WHAT": "Food",
-              "AMOUNT": 12
+              "AMOUNT": 12.00
             }
           ]
         }
@@ -203,12 +203,12 @@
             {
               "ID": 1,
               "WHAT": "Cat",
-              "AMOUNT": 19
+              "AMOUNT": 19.00
             },
             {
               "ID": 2,
               "WHAT": "Food",
-              "AMOUNT": 18
+              "AMOUNT": 18.00
             }
           ]
         },
@@ -219,7 +219,7 @@
             {
               "ID": 3,
               "WHAT": "Car",
-              "AMOUNT": 17
+              "AMOUNT": 17.00
             }
           ]
         },
@@ -230,17 +230,17 @@
             {
               "ID": 4,
               "WHAT": "Beer",
-              "AMOUNT": 14
+              "AMOUNT": 14.00
             },
             {
               "ID": 5,
               "WHAT": "Car",
-              "AMOUNT": 12
+              "AMOUNT": 12.00
             },
             {
               "ID": 6,
               "WHAT": "Food",
-              "AMOUNT": 12
+              "AMOUNT": 12.00
             }
           ]
         }

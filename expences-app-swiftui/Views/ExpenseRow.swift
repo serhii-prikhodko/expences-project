@@ -15,13 +15,13 @@ struct ExpenseRow: View {
             Text(expense.name)
                 .fontWeight(.bold)
             Spacer()
-            Text("Amount: \(expense.amount)")
+            Text("$ \(expense.amount, specifier: "%.2f")")
         }
     }
 }
 
 struct ExpenseRow_Previews: PreviewProvider {
     static var previews: some View {
-        ExpenseRow(expense: Expense(id: 1, name: "Apples", amount: 9))
+        ExpenseRow(expense: Expense(id: 1, name: "Apples", amount: 9.00))
     }
 }
