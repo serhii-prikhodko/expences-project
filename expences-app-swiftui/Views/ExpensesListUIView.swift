@@ -7,31 +7,25 @@
 
 import SwiftUI
 
-struct ExpensesUIView: View {
+struct ExpensesListUIView: View {
     
     let data = JSONParser.parse(from: "expenses")
     var body: some View {
         let expensesAll = data.expenses
-        NavigationView {
             List {
                 ForEach(expensesAll) { person in
                     Section(header: Text(person.name)) {
                         let allPersonExpensesArray = returnDailyArray(expensesByPerson: person)
                         ForEach(allPersonExpensesArray) { expense in
                                 HStack {
-                                    Text(expense.name)
-                                        .fontWeight(.bold)
-                                    Spacer()
-                                    Text("Amount: \(expense.amount)")
-                                        
+                                    ExpenseRow(expense: expense)
                                 }
                         }
                     }
                 }
             }
-            .navigationBarTitle("Expenses")
+            .navigationBarTitle(Text("Expenses"))
             .listStyle(GroupedListStyle())
-        }
     }
     func returnDailyArray(expensesByPerson: ExpensesByPerson) -> [Expense] {
         var array = [Expense]()
@@ -47,6 +41,6 @@ struct ExpensesUIView: View {
 
 struct ExpensesUIView_Previews: PreviewProvider {
     static var previews: some View {
-        ExpensesUIView()
+        ExpensesListUIView()
     }
 }

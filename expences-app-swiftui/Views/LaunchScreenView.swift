@@ -10,9 +10,9 @@ import SwiftUI
 struct LaunchScreenView: View {
     var body: some View {
         NavigationView {
-                NavigationLink(destination: ExpensesUIView()) {
-                    Text("Show Expenses")
-                }
+            NavigationLink(destination: ExpensesListUIView()) {
+                Text("Show Expenses")
+            }
         }
     }
 }
@@ -22,16 +22,3 @@ struct ContentView_Previews: PreviewProvider {
         LaunchScreenView()
     }
 }
-
-//struct GoNextScreenButton: View {
-//    var body: some View {
-//        Button(action: {
-//        }) {
-//            Text("Show Expences")
-//                .foregroundColor(Color.white)
-//                .padding()
-//        }
-//        .background(Color.blue)
-//        .cornerRadius(10)
-//    }
-//}
