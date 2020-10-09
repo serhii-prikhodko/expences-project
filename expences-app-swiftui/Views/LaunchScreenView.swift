@@ -13,6 +13,7 @@ struct LaunchScreenView: View {
             NavigationLink(destination: ExpensesListUIView()) {
                 Text("Show Expenses")
             }
+            .navigationBarHidden(true)
         }
     }
 }
