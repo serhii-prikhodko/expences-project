@@ -15,6 +15,7 @@ struct LaunchScreenView: View {
             }
             .navigationBarHidden(true)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

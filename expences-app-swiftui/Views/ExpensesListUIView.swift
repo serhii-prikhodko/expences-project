@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct ExpensesListUIView: View {
-    
     let data = JSONParser.parse(from: "expenses")
     var body: some View {
         List {
             ForEach(data.expenses) { person in
                 Section(header: Text(person.name)) {
                     ForEach(0..<person.weeklyExpenses.count) { index in
-                        Text("Day \(1 + index)")
+                        Text("Day \(index + 1)")
                             .foregroundColor(Color.blue)
                         ExpensesByDay(expensesByDay: person.weeklyExpenses[index].dailyExpenses)
                     }
@@ -34,7 +33,6 @@ struct ExpensesUIView_Previews: PreviewProvider {
 }
 
 struct ExpensesByDay: View {
-    
     let expensesByDay: [Expense]
     var body: some View {
         ForEach(expensesByDay) { expense in
