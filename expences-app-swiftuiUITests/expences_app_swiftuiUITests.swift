@@ -30,9 +30,6 @@ class expences_app_swiftuiUITests: XCTestCase {
     }
     
     func testButtonTextOnLaunchScreen() throws {
-        // Launch the app
-        self.setUp()
-        
         // Find button by name
         let button = app.buttons["Show Expenses"]
         
@@ -45,9 +42,6 @@ class expences_app_swiftuiUITests: XCTestCase {
     }
     
     func testGoToExpensesScreen() throws {
-        // Launch the app
-        self.setUp()
-        
         // Find button by name
         let button = app.buttons["Show Expenses"]
         
@@ -63,9 +57,6 @@ class expences_app_swiftuiUITests: XCTestCase {
     }
     
     func testCheckExpensesData() throws {
-        // Launch the app
-        self.setUp()
-        
         // Find button by name
         let button = app.buttons["Show Expenses"]
         
