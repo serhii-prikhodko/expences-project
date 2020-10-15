@@ -8,6 +8,8 @@
 import XCTest
 
 class expences_app_swiftuiUITests: XCTestCase {
+    
+    var app: XCUIApplication!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -21,14 +23,61 @@ class expences_app_swiftuiUITests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    override func setUp() {
+        self.app = XCUIApplication()
+        self.app.launch()
+    }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testButtonTextOnLaunchScreen() throws {
+        // Launch the app
+        self.setUp()
+        
+        // Find button by name
+        let button = app.buttons["Show Expenses"]
+        
+        XCTContext.runActivity(named: "Open launch screen") { _ in
+            XCTAssertTrue(button.waitForExistence(timeout: 5.0))
+            
+            // Check that button is presented on the screen
+            XCTAssertTrue(self.app.buttons["Show Expenses"].exists, "Button 'Show Expenses' isn't presented on the screen")
+        }
+    }
+    
+    func testGoToExpensesScreen() throws {
+        // Launch the app
+        self.setUp()
+        
+        // Find button by name
+        let button = app.buttons["Show Expenses"]
+        
+        XCTContext.runActivity(named: "Open launch screen") { _ in
+            XCTAssertTrue(button.waitForExistence(timeout: 5.0))
+            
+            // Open expenses screen
+            button.tap()
+            
+            // Check screen navigation title text
+            XCTAssertTrue(app.navigationBars.staticTexts["Expenses"].waitForExistence(timeout: 5.0), "Can't find text 'Expenses' on the navigation bar")
+        }
+    }
+    
+    func testCheckExpensesData() throws {
+        // Launch the app
+        self.setUp()
+        
+        // Find button by name
+        let button = app.buttons["Show Expenses"]
+        
+        XCTContext.runActivity(named: "Open launch screen") { _ in
+            XCTAssertTrue(button.waitForExistence(timeout: 5.0))
+            
+            // Open expenses screen
+            button.tap()
+            
+            // Check first expense title and price
+            XCTAssertTrue(app.cells.staticTexts["Beer"].waitForExistence(timeout: 5.0), "Can't find data 'Beer' on the screen")
+            XCTAssertTrue(app.cells.staticTexts["$ 19.00"].waitForExistence(timeout: 5.0), "Can't find data '19.00' on the screen")
+        }
     }
 
     func testLaunchPerformance() throws {
