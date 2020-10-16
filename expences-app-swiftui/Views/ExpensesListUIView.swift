@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ExpensesListUIView: View {
     let data = JSONParser.parse(from: "expenses")
+    
     var body: some View {
         List {
             ForEach(data.expenses) { person in
@@ -52,6 +53,9 @@ struct DayRow: View {
             Spacer()
             Button(action: { isPresented.toggle() }) {
                 Image(systemName: "plus")
+            }
+            .sheet(isPresented: $isPresented) {
+                expenseEditingView(showModal: $isPresented)
             }
         }
     }
