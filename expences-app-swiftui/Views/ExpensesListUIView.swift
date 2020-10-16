@@ -14,8 +14,7 @@ struct ExpensesListUIView: View {
             ForEach(data.expenses) { person in
                 Section(header: Text(person.name)) {
                     ForEach(0..<person.weeklyExpenses.count) { index in
-                        Text("Day \(index + 1)")
-                            .foregroundColor(Color.blue)
+                        DayRow(index: index)
                         ExpensesByDay(expensesByDay: person.weeklyExpenses[index].dailyExpenses)
                     }
                 }
@@ -38,6 +37,21 @@ struct ExpensesByDay: View {
         ForEach(expensesByDay) { expense in
             HStack {
                 ExpenseRow(expense: expense)
+            }
+        }
+    }
+}
+
+struct DayRow: View {
+    var index: Int
+    @State private var isPresented = false
+    var body: some View {
+        HStack {
+            Text("Day \(index + 1)")
+                .foregroundColor(Color.blue)
+            Spacer()
+            Button(action: { isPresented.toggle() }) {
+                Image(systemName: "plus")
             }
         }
     }
