@@ -12,6 +12,7 @@ struct expenseEditingView: View {
     @Binding var showModal: Bool
     @State var name = ""
     @State var amount = ""
+    @State var showAlert = false
     
     var body: some View {
         NavigationView {
@@ -33,12 +34,31 @@ struct expenseEditingView: View {
                     Button(action: addExpense) {
                         Text("Add")
                     }
+                    .disabled(self.name.isEmpty || self.amount.isEmpty)
+                    .alert(isPresented: $showAlert) {
+                        Alert(title: Text("Information"), message: Text("Entered amount is incorrect"), dismissButton: .cancel(Text("OK")))
+                    }
             )
         }
     }
     
     private func addExpense() {
+        let enteredAmount = checkEnteredValue(value: self.amount)
+        guard enteredAmount != nil else {
+            self.amount = ""
+            self.showAlert = true
+            
+            return
+        }
         
+        let expense = Expense(name: self.name, amount: enteredAmount!)
+        print(expense)
+    }
+    
+    private func checkEnteredValue(value: String) -> Double? {
+        let doubleValue = Double(value)
+        
+        return doubleValue
     }
 }
 
