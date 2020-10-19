@@ -11,7 +11,7 @@ public struct ExpensesByPerson: Codable,Identifiable {
     
     public let id = UUID()
     public let name: String
-    public let weeklyExpenses: [DailyExpenses]
+    public var weeklyExpenses: [DailyExpenses]
     
     enum CodingKeys: String, CodingKey {
         case name = "WHO"

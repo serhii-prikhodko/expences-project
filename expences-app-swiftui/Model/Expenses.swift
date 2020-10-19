@@ -10,7 +10,7 @@ import Foundation
 public struct Expenses: Codable {
     
     public let id = UUID()
-    public let expenses: [ExpensesByPerson]
+    public var expenses: [ExpensesByPerson]
     
     enum CodingKeys: String, CodingKey {
         case expenses = "expenses"

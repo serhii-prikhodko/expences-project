@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct ExpensesListUIView: View {
-    let data = JSONParser.parse(from: "expenses")
+    
+    @ObservedObject var expensesStore = ExpensesStore()
+    //let data = JSONParser.parse(from: "expenses")
     
     var body: some View {
         List {
-            ForEach(data.expenses) { person in
+            ForEach(expensesStore.expenses) { person in
                 Section(header: Text(person.name)) {
                     ForEach(0..<person.weeklyExpenses.count) { index in
                         DayRow(index: index)
@@ -55,7 +57,7 @@ struct DayRow: View {
                 Image(systemName: "plus")
             }
             .sheet(isPresented: $isPresented) {
-                expenseEditingView(showModal: $isPresented)
+                ExpenseEditingView(showModal: $isPresented)
             }
         }
     }

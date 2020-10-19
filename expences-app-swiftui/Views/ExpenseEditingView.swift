@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct expenseEditingView: View {
+struct ExpenseEditingView: View {
     
     @Binding var showModal: Bool
     @State var name = ""
@@ -64,6 +64,6 @@ struct expenseEditingView: View {
 
 struct AddExpense_Previews: PreviewProvider {
     static var previews: some View {
-        expenseEditingView(showModal: .constant(true))
+        ExpenseEditingView(showModal: .constant(true))
     }
 }
