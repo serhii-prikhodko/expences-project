@@ -13,6 +13,10 @@ struct ExpenseEditingView: View {
     @State var name = ""
     @State var amount = ""
     @State var showAlert = false
+    var personIndex: Int
+    var dayIndex: Int
+    var positionIndex: Int
+    let expensesStore: ExpensesStore
     
     var body: some View {
         NavigationView {
@@ -50,9 +54,9 @@ struct ExpenseEditingView: View {
             
             return
         }
-        
         let expense = Expense(name: self.name, amount: enteredAmount!)
-        print(expense)
+        expensesStore.addExpense(personIndex: personIndex, dayIndex: dayIndex, expense: expense)
+        showModal.toggle()
     }
     
     private func checkEnteredValue(value: String) -> Double? {
@@ -64,6 +68,6 @@ struct ExpenseEditingView: View {
 
 struct AddExpense_Previews: PreviewProvider {
     static var previews: some View {
-        ExpenseEditingView(showModal: .constant(true))
+        ExpenseEditingView(showModal: .constant(true), personIndex: 0, dayIndex: 0, positionIndex: 0, expensesStore: ExpensesStore())
     }
 }
