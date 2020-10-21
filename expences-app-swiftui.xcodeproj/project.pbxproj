@@ -123,7 +123,6 @@
 				1B6AC893252F1A4C00486F74 /* Assets.xcassets */,
 				1B6AC898252F1A4C00486F74 /* Info.plist */,
 				1B6AC895252F1A4C00486F74 /* Preview Content */,
-				1B1EB0B3253DDFAE00A894D7 /* ExpensesStore.swift */,
 			);
 			path = "expences-app-swiftui";
 			sourceTree = "<group>";
@@ -180,6 +179,7 @@
 				1B6AC8EF252F3FF600486F74 /* ExpensesByPerson.swift */,
 				1B6AC8F0252F3FF600486F74 /* Expenses.swift */,
 				1B6AC8F1252F3FF600486F74 /* Expense.swift */,
+				1B1EB0B3253DDFAE00A894D7 /* ExpensesStore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

@@ -17,6 +17,7 @@ struct ExpenseEditingView: View {
     var dayIndex: Int
     var positionIndex: Int
     let expensesStore: ExpensesStore
+    var expense: Expense?
     
     var body: some View {
         NavigationView {
@@ -28,6 +29,9 @@ struct ExpenseEditingView: View {
                     TextField("Enter amount here", text: $amount)
                 }
             }
+            .onAppear(perform: {
+                checkTranferedExpense()
+            })
             .navigationBarTitle("Add New Expense", displayMode: .inline)
             .navigationBarItems(
                 leading:
@@ -64,10 +68,17 @@ struct ExpenseEditingView: View {
         
         return doubleValue
     }
+    
+    private func checkTranferedExpense() {
+        guard self.expense != nil else { return }
+        self.name = self.expense!.name
+        self.amount = String(format: "%.2f", self.expense!.amount)
+        
+    }
 }
 
 struct AddExpense_Previews: PreviewProvider {
     static var previews: some View {
-        ExpenseEditingView(showModal: .constant(true), personIndex: 0, dayIndex: 0, positionIndex: 0, expensesStore: ExpensesStore())
+        ExpenseEditingView(showModal: .constant(true), personIndex: 0, dayIndex: 0, positionIndex: 0, expensesStore: ExpensesStore(), expense: Expense(name: "Item", amount: 1.00) )
     }
 }
