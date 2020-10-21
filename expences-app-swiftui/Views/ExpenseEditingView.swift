@@ -18,6 +18,9 @@ struct ExpenseEditingView: View {
     var positionIndex: Int
     let expensesStore: ExpensesStore
     var expense: Expense?
+    var operation: OperationType
+    @State var navigationText = ""
+    @State var actionButtonText = ""
     
     var body: some View {
         NavigationView {
@@ -31,16 +34,17 @@ struct ExpenseEditingView: View {
             }
             .onAppear(perform: {
                 checkTranferedExpense()
+                checkOperationType(operation: operation)
             })
-            .navigationBarTitle("Add New Expense", displayMode: .inline)
+            .navigationBarTitle(navigationText, displayMode: .inline)
             .navigationBarItems(
                 leading:
                     Button(action: { showModal.toggle() }) {
                         Text("Cancel")
                     },
                 trailing:
-                    Button(action: addExpense) {
-                        Text("Add")
+                    Button(action: { handleExpense(operation: operation) }) {
+                        Text(actionButtonText)
                     }
                     .disabled(self.name.isEmpty || self.amount.isEmpty)
                     .alert(isPresented: $showAlert) {
@@ -50,7 +54,7 @@ struct ExpenseEditingView: View {
         }
     }
     
-    private func addExpense() {
+    private func handleExpense(operation: OperationType) {
         let enteredAmount = checkEnteredValue(value: self.amount)
         guard enteredAmount != nil else {
             self.amount = ""
@@ -59,7 +63,14 @@ struct ExpenseEditingView: View {
             return
         }
         let expense = Expense(name: self.name, amount: enteredAmount!)
-        expensesStore.addExpense(personIndex: personIndex, dayIndex: dayIndex, expense: expense)
+        
+        switch operation {
+        case .create:
+            expensesStore.addExpense(personIndex: personIndex, dayIndex: dayIndex, expense: expense)
+        case .update:
+            expensesStore.updateExpense(personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, expense: expense)
+        }
+        
         showModal.toggle()
     }
     
@@ -75,10 +86,21 @@ struct ExpenseEditingView: View {
         self.amount = String(format: "%.2f", self.expense!.amount)
         
     }
+    
+    private func checkOperationType(operation: OperationType) {
+        switch operation {
+        case .create:
+            self.navigationText = "Add New Expense"
+            self.actionButtonText = "Create"
+        case .update:
+            self.navigationText = "Update Expense"
+            self.actionButtonText = "Save"
+        }
+    }
 }
 
 struct AddExpense_Previews: PreviewProvider {
     static var previews: some View {
-        ExpenseEditingView(showModal: .constant(true), personIndex: 0, dayIndex: 0, positionIndex: 0, expensesStore: ExpensesStore(), expense: Expense(name: "Item", amount: 1.00) )
+        ExpenseEditingView(showModal: .constant(true), personIndex: 0, dayIndex: 0, positionIndex: 0, expensesStore: ExpensesStore(), expense: Expense(name: "Item", amount: 1.00), operation: .create )
     }
 }

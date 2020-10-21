@@ -45,18 +45,16 @@ struct ExpensesByDay: View {
     @State private var isPresented = false
     
     var body: some View {
-        ForEach(expensesByDay) { expense in
+        ForEach(0..<expensesByDay.count) { positionIndex in
             HStack {
-                ExpenseRow(expense: expense)
+                ExpenseRow(expense: expensesByDay[positionIndex])
                     // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
                     .contentShape(Rectangle())
                     // Line below makes tap gesture possible for each row in list
-                    .onTapGesture(perform: {
-                        isPresented.toggle()
-                    })
+                    .onTapGesture(perform: { isPresented.toggle() })
             }
             .sheet(isPresented: $isPresented) {
-                ExpenseEditingView(showModal: $isPresented, personIndex: personIndex, dayIndex: dayIndex, positionIndex: 0, expensesStore: expensesStore, expense: expense)
+                ExpenseEditingView(showModal: $isPresented, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, expensesStore: expensesStore, expense: expensesByDay[positionIndex], operation: .update)
             }
         }
         .onDelete { (indexSet) in
@@ -82,7 +80,7 @@ struct DayRow: View {
                 Image(systemName: "plus")
             }
             .sheet(isPresented: $isPresented) {
-                ExpenseEditingView(showModal: $isPresented, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, expensesStore: expensesStore, expense: nil)
+                ExpenseEditingView(showModal: $isPresented, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, expensesStore: expensesStore, expense: nil, operation: .create)
             }
         }
     }
