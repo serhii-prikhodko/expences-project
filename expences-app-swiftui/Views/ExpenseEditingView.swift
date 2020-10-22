@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExpenseEditingView: View {
     
-    @Binding var showModal: Bool
+    @Binding var expense: Expense?
     @State var name = ""
     @State var amount = ""
     @State var showAlert = false
@@ -17,7 +17,6 @@ struct ExpenseEditingView: View {
     var dayIndex: Int
     var positionIndex: Int
     let expensesStore: ExpensesStore
-    var expense: Expense?
     var operation: OperationType
     @State var navigationText = ""
     @State var actionButtonText = ""
@@ -39,7 +38,7 @@ struct ExpenseEditingView: View {
             .navigationBarTitle(navigationText, displayMode: .inline)
             .navigationBarItems(
                 leading:
-                    Button(action: { showModal.toggle() }) {
+                    Button(action: { expense = nil }) {
                         Text("Cancel")
                     },
                 trailing:
@@ -71,7 +70,7 @@ struct ExpenseEditingView: View {
             expensesStore.updateExpense(personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, expense: expense)
         }
         
-        showModal.toggle()
+        self.expense = nil
     }
     
     private func checkEnteredValue(value: String) -> Double? {
@@ -101,6 +100,6 @@ struct ExpenseEditingView: View {
 
 struct AddExpense_Previews: PreviewProvider {
     static var previews: some View {
-        ExpenseEditingView(showModal: .constant(true), personIndex: 0, dayIndex: 0, positionIndex: 0, expensesStore: ExpensesStore(), expense: Expense(name: "Item", amount: 1.00), operation: .create )
+        ExpenseEditingView(expense: .constant(Expense(name: "Item", amount: 1.00)), personIndex: 0, dayIndex: 0, positionIndex: 0, expensesStore: ExpensesStore(), operation: .create )
     }
 }

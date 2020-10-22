@@ -9,8 +9,12 @@ import SwiftUI
 
 struct ExpensesListUIView: View {
     
-    @ObservedObject var expensesStore = ExpensesStore()
-    @State var isEditMode: EditMode = .inactive
+    @ObservedObject private var expensesStore = ExpensesStore()
+    @State private var isEditMode: EditMode = .inactive
+    @State private var expense: Expense? = nil
+    @State private var positionIndex: Int = 0
+    @State private var dayIndex: Int = 0
+    @State private var personIndex: Int = 0
     
     var body: some View {
         List {
@@ -19,11 +23,31 @@ struct ExpensesListUIView: View {
                 Section(header: Text(person.name)) {
                     ForEach(0..<person.weeklyExpenses.count) { dayIndex in
                         DayRow(dayIndex: dayIndex, personIndex: personIndex, positionIndex: 0, expensesStore: expensesStore, isEditMode: $isEditMode)
-                        ExpensesByDay(expensesByDay: person.weeklyExpenses[dayIndex].dailyExpenses, expensesStore: expensesStore, dayIndex: dayIndex, personIndex: personIndex)
+                        ForEach(0..<person.weeklyExpenses[dayIndex].dailyExpenses.count) { positionIndex in
+                            ExpenseRow(expense: person.weeklyExpenses[dayIndex].dailyExpenses[positionIndex])
+                                // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
+                                .contentShape(Rectangle())
+                                // Line below makes tap gesture possible for each row in list
+                                .onTapGesture(perform: {
+                                    expense = person.weeklyExpenses[dayIndex].dailyExpenses[positionIndex]
+                                    self.positionIndex = positionIndex
+                                    self.dayIndex = dayIndex
+                                    self.personIndex = personIndex
+                                })
+                                .sheet(item: $expense, content: { expense in
+                                    ExpenseEditingView(expense: $expense, personIndex: self.personIndex, dayIndex: self.dayIndex, positionIndex: self.positionIndex, expensesStore: expensesStore, operation: .update)
+                                })
+                        }
+                        .onDelete { (indexSet) in
+                            expensesStore.deleteExpense(personIndex: personIndex, dayIndex: dayIndex, at: indexSet)
+                        }
                     }
                 }
             }
         }
+//        .sheet(item: $expense, content: { expense in
+//            ExpenseEditingView(expense: $expense, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, expensesStore: expensesStore, operation: .update)
+//        })
         .navigationBarTitle("Expenses", displayMode: .inline)
         .listStyle(GroupedListStyle())
         .navigationBarItems(trailing: EditButton())
@@ -33,7 +57,7 @@ struct ExpensesListUIView: View {
 
 struct ExpensesUIView_Previews: PreviewProvider {
     static var previews: some View {
-        ExpensesListUIView(isEditMode: .inactive)
+        ExpensesListUIView()
     }
 }
 
@@ -42,24 +66,31 @@ struct ExpensesByDay: View {
     var expensesStore: ExpensesStore
     var dayIndex: Int
     var personIndex: Int
-    @State private var isPresented = false
+    @State private var expense: Expense? = nil
+    @State var positionIndex: Int = 0
+    @Binding var isEditMode: EditMode
     
     var body: some View {
-        ForEach(0..<expensesByDay.count) { positionIndex in
-            HStack {
+        VStack {
+            DayRow(dayIndex: dayIndex, personIndex: personIndex, positionIndex: positionIndex, expensesStore: expensesStore, isEditMode: $isEditMode)
+            ForEach(0..<expensesByDay.count) { positionIndex in
                 ExpenseRow(expense: expensesByDay[positionIndex])
                     // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
                     .contentShape(Rectangle())
                     // Line below makes tap gesture possible for each row in list
-                    .onTapGesture(perform: { isPresented.toggle() })
+                    .onTapGesture(perform: {
+                        expense = expensesByDay[positionIndex]
+                        self.positionIndex = positionIndex
+                    })
             }
-            .sheet(isPresented: $isPresented) {
-                ExpenseEditingView(showModal: $isPresented, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, expensesStore: expensesStore, expense: expensesByDay[positionIndex], operation: .update)
+            .onDelete { (indexSet) in
+                expensesStore.deleteExpense(personIndex: personIndex, dayIndex: dayIndex, at: indexSet)
             }
+            .sheet(item: $expense, content: { expense in
+                ExpenseEditingView(expense: $expense, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, expensesStore: expensesStore, operation: .update)
+            })
         }
-        .onDelete { (indexSet) in
-            expensesStore.deleteExpense(personIndex: personIndex, dayIndex: dayIndex, at: indexSet)
-        }
+        .environment(\.editMode, self.$isEditMode)
     }
 }
 
@@ -68,7 +99,7 @@ struct DayRow: View {
     var personIndex: Int
     var positionIndex: Int
     var expensesStore: ExpensesStore
-    @State private var isPresented = false
+    @State private var expense: Expense? = nil
     @Binding var isEditMode: EditMode
     
     var body: some View {
@@ -76,12 +107,12 @@ struct DayRow: View {
             Text("Day \(dayIndex + 1)")
                 .foregroundColor(Color.blue)
             Spacer()
-            Button(action: { isPresented.toggle() }) {
+            Button(action: { expense = Expense(name: "", amount: 0) }) {
                 Image(systemName: "plus")
             }
-            .sheet(isPresented: $isPresented) {
-                ExpenseEditingView(showModal: $isPresented, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, expensesStore: expensesStore, expense: nil, operation: .create)
-            }
+            .sheet(item: $expense, content: { expense in
+                ExpenseEditingView(expense: $expense, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, expensesStore: expensesStore, operation: .create)
+            })
         }
     }
 }
