@@ -34,9 +34,6 @@ struct ExpensesListUIView: View {
                                     self.dayIndex = dayIndex
                                     self.personIndex = personIndex
                                 })
-                                .sheet(item: $expense, content: { expense in
-                                    ExpenseEditingView(expense: $expense, personIndex: self.personIndex, dayIndex: self.dayIndex, positionIndex: self.positionIndex, expensesStore: expensesStore, operation: .update)
-                                })
                         }
                         .onDelete { (indexSet) in
                             expensesStore.deleteExpense(personIndex: personIndex, dayIndex: dayIndex, at: indexSet)
@@ -45,9 +42,9 @@ struct ExpensesListUIView: View {
                 }
             }
         }
-//        .sheet(item: $expense, content: { expense in
-//            ExpenseEditingView(expense: $expense, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, expensesStore: expensesStore, operation: .update)
-//        })
+        .sheet(item: $expense, content: { expense in
+            ExpenseEditingView(expense: $expense, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, expensesStore: expensesStore, operation: .update)
+        })
         .navigationBarTitle("Expenses", displayMode: .inline)
         .listStyle(GroupedListStyle())
         .navigationBarItems(trailing: EditButton())
@@ -58,39 +55,6 @@ struct ExpensesListUIView: View {
 struct ExpensesUIView_Previews: PreviewProvider {
     static var previews: some View {
         ExpensesListUIView()
-    }
-}
-
-struct ExpensesByDay: View {
-    let expensesByDay: [Expense]
-    var expensesStore: ExpensesStore
-    var dayIndex: Int
-    var personIndex: Int
-    @State private var expense: Expense? = nil
-    @State var positionIndex: Int = 0
-    @Binding var isEditMode: EditMode
-    
-    var body: some View {
-        VStack {
-            DayRow(dayIndex: dayIndex, personIndex: personIndex, positionIndex: positionIndex, expensesStore: expensesStore, isEditMode: $isEditMode)
-            ForEach(0..<expensesByDay.count) { positionIndex in
-                ExpenseRow(expense: expensesByDay[positionIndex])
-                    // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
-                    .contentShape(Rectangle())
-                    // Line below makes tap gesture possible for each row in list
-                    .onTapGesture(perform: {
-                        expense = expensesByDay[positionIndex]
-                        self.positionIndex = positionIndex
-                    })
-            }
-            .onDelete { (indexSet) in
-                expensesStore.deleteExpense(personIndex: personIndex, dayIndex: dayIndex, at: indexSet)
-            }
-            .sheet(item: $expense, content: { expense in
-                ExpenseEditingView(expense: $expense, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, expensesStore: expensesStore, operation: .update)
-            })
-        }
-        .environment(\.editMode, self.$isEditMode)
     }
 }
 
