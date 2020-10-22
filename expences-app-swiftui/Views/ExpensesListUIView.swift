@@ -18,12 +18,12 @@ struct ExpensesListUIView: View {
     
     var body: some View {
         List {
-            ForEach(0..<expensesStore.expenses.count) { personIndex in
+            ForEach(expensesStore.expenses.indices) { personIndex in
                 let person = expensesStore.expenses[personIndex]
                 Section(header: Text(person.name)) {
-                    ForEach(0..<person.weeklyExpenses.count) { dayIndex in
+                    ForEach(person.weeklyExpenses.indices) { dayIndex in
                         DayRow(dayIndex: dayIndex, personIndex: personIndex, positionIndex: 0, expensesStore: expensesStore, isEditMode: $isEditMode)
-                        ForEach(0..<person.weeklyExpenses[dayIndex].dailyExpenses.count) { positionIndex in
+                        ForEach(person.weeklyExpenses[dayIndex].dailyExpenses.indices, id: \.hashValue) { positionIndex in
                             ExpenseRow(expense: person.weeklyExpenses[dayIndex].dailyExpenses[positionIndex])
                                 // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
                                 .contentShape(Rectangle())
