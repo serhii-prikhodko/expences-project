@@ -28,12 +28,12 @@ struct ExpensesListUIView: View {
                                 // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
                                 .contentShape(Rectangle())
                                 // Line below makes tap gesture possible for each row in list
-                                .onTapGesture(perform: {
-                                    expense = person.weeklyExpenses[dayIndex].dailyExpenses[positionIndex]
+                                .onTapGesture {
                                     self.positionIndex = positionIndex
                                     self.dayIndex = dayIndex
                                     self.personIndex = personIndex
-                                })
+                                    expense = person.weeklyExpenses[dayIndex].dailyExpenses[positionIndex]
+                                }
                         }
                         .onDelete { (indexSet) in
                             expensesStore.deleteExpense(personIndex: personIndex, dayIndex: dayIndex, at: indexSet)
@@ -43,7 +43,7 @@ struct ExpensesListUIView: View {
             }
         }
         .sheet(item: $expense, content: { expense in
-            ExpenseEditingView(expense: $expense, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, expensesStore: expensesStore, operation: .update)
+            ExpenseEditingView(expense: $expense, personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expensesStore: expensesStore, operation: .update)
         })
         .navigationBarTitle("Expenses", displayMode: .inline)
         .listStyle(GroupedListStyle())
@@ -75,7 +75,7 @@ struct DayRow: View {
                 Image(systemName: "plus")
             }
             .sheet(item: $expense, content: { expense in
-                ExpenseEditingView(expense: $expense, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, expensesStore: expensesStore, operation: .create)
+                ExpenseEditingView(expense: $expense, personIndex: .constant(personIndex), dayIndex: .constant(dayIndex), positionIndex: .constant(positionIndex), expensesStore: expensesStore, operation: .create)
             })
         }
     }

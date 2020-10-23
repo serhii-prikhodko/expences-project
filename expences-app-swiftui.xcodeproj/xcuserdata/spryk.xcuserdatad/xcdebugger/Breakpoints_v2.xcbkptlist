@@ -152,7 +152,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "64E2E0C0-F30F-4BF7-9641-DB7A30AEB13F"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "expences-app-swiftui/Views/ExpensesListUIView.swift"
@@ -160,22 +160,6 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
             endingLineNumber = "46"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "84B1E75C-CE3E-4C50-A04C-44609AF6FE33"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "expences-app-swiftui/Views/ExpensesListUIView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -194,6 +178,69 @@
             endingLineNumber = "70"
             landmarkName = "handleExpense(operation:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "70856FE5-AD06-4FF1-8371-B6D27BEBFBD8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "expences-app-swiftui/Views/ExpenseEditingView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "70856FE5-AD06-4FF1-8371-B6D27BEBFBD8 - da437105b74bd0f3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationBarItems&lt;A, B where A1: SwiftUI.View, B1: SwiftUI.View&gt;(leading: A1, trailing: B1) -&gt; some&gt;&gt;.0 in expences_app_swiftui.ExpenseEditingView.body.getter : some"
+                  moduleName = "expences-app-swiftui"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/spryk/Documents/code_examples/Expences/expences-app-swiftui/Views/ExpenseEditingView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "1799">
+               </Location>
+               <Location
+                  uuid = "70856FE5-AD06-4FF1-8371-B6D27BEBFBD8 - 9cfe81efa7f0d2e3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 () -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationBarItems&lt;A, B where A1: SwiftUI.View, B1: SwiftUI.View&gt;(leading: A1, trailing: B1) -&gt; some&gt;&gt;.0 in expences_app_swiftui.ExpenseEditingView.body.getter : some"
+                  moduleName = "expences-app-swiftui"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/spryk/Documents/code_examples/Expences/expences-app-swiftui/Views/ExpenseEditingView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "30">
+               </Location>
+               <Location
+                  uuid = "70856FE5-AD06-4FF1-8371-B6D27BEBFBD8 - be3e8bef67b9be75"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #6 () -&gt; SwiftUI.Text in closure #1 () -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.navigationBarItems&lt;A, B where A1: SwiftUI.View, B1: SwiftUI.View&gt;(leading: A1, trailing: B1) -&gt; some&gt;&gt;.0 in expences_app_swiftui.ExpenseEditingView.body.getter : some"
+                  moduleName = "expences-app-swiftui"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/spryk/Documents/code_examples/Expences/expences-app-swiftui/Views/ExpenseEditingView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "95">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

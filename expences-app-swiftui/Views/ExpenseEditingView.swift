@@ -13,10 +13,10 @@ struct ExpenseEditingView: View {
     @State var name = ""
     @State var amount = ""
     @State var showAlert = false
-    var personIndex: Int
-    var dayIndex: Int
-    var positionIndex: Int
-    let expensesStore: ExpensesStore
+    @Binding var personIndex: Int
+    @Binding var dayIndex: Int
+    @Binding var positionIndex: Int
+    @ObservedObject var expensesStore: ExpensesStore
     var operation: OperationType
     @State var navigationText = ""
     @State var actionButtonText = ""
@@ -100,6 +100,6 @@ struct ExpenseEditingView: View {
 
 struct AddExpense_Previews: PreviewProvider {
     static var previews: some View {
-        ExpenseEditingView(expense: .constant(Expense(name: "Item", amount: 1.00)), personIndex: 0, dayIndex: 0, positionIndex: 0, expensesStore: ExpensesStore(), operation: .create )
+        ExpenseEditingView(expense: .constant(Expense(name: "Item", amount: 1.00)), personIndex: .constant(0), dayIndex: .constant(0), positionIndex: .constant(0), expensesStore: ExpensesStore(), operation: .create )
     }
 }
