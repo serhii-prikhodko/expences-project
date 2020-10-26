@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "042E3AD6-7FFD-4A67-B344-639D74979BA0"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5814ACE2-33AD-42D6-B5FE-75FA48CDFC39"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "Yes"
+            filePath = "expences-app-swiftui/Views/ExpensesListUIView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.Log">
+                  <ActionContent
+                     message = "sheet was called"
+                     conveyanceType = "0">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
+            <Locations>
+               <Location
+                  uuid = "5814ACE2-33AD-42D6-B5FE-75FA48CDFC39 - 591ff87ea7abf3aa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Int) -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.sheet&lt;A, B where A1: Swift.Identifiable, B1: SwiftUI.View&gt;(item: SwiftUI.Binding&lt;Swift.Optional&lt;A1&gt;&gt;, onDismiss: Swift.Optional&lt;() -&gt; ()&gt;, content: (A1) -&gt; B1) -&gt; some&gt;&gt;.0 in closure #1 (Swift.Int) -&gt; SwiftUI.TupleView&lt;(expences_app_swiftui.DayRow, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.DynamicViewContent.onDelete(perform: Swift.Optional&lt;(Foundation.IndexSet) -&gt; ()&gt;) -&gt; some&gt;&gt;.0)&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.TupleView&lt;(expences_app_swiftui.DayRow, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.DynamicViewContent.onDelete(perform: Swift.Optional&lt;(Foundation.IndexSet) -&gt; ()&gt;) -&gt; some&gt;&gt;.0)&gt;&gt; in closure #1 (Swift.Int) -&gt; SwiftUI.Section&lt;SwiftUI.Text, SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.TupleView&lt;(expences_app_swiftui.DayRow, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.DynamicViewContent.onDelete(perform: Swift.Optional&lt;(Foundation.IndexSet) -&gt; ()&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;, SwiftUI.EmptyView&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.Section&lt;SwiftUI.Text, SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.TupleView&lt;(expences_app_swiftui.DayRow, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.DynamicViewContent.onDelete(perform: Swift.Optional&lt;(Foundation.IndexSet) -&gt; ()&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;, SwiftUI.EmptyView&gt;&gt; in expences_app_swiftui.ExpensesListUIView.body.getter : some"
+                  moduleName = "expences-app-swiftui"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/expences-project/expences-app-swiftui/Views/ExpensesListUIView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "1743">
+               </Location>
+               <Location
+                  uuid = "5814ACE2-33AD-42D6-B5FE-75FA48CDFC39 - 4c6483ca5b055647"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (expences_app_swiftui.Expense) -&gt; expences_app_swiftui.ExpenseEditingView in closure #1 (Swift.Int) -&gt; &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.sheet&lt;A, B where A1: Swift.Identifiable, B1: SwiftUI.View&gt;(item: SwiftUI.Binding&lt;Swift.Optional&lt;A1&gt;&gt;, onDismiss: Swift.Optional&lt;() -&gt; ()&gt;, content: (A1) -&gt; B1) -&gt; some&gt;&gt;.0 in closure #1 (Swift.Int) -&gt; SwiftUI.TupleView&lt;(expences_app_swiftui.DayRow, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.DynamicViewContent.onDelete(perform: Swift.Optional&lt;(Foundation.IndexSet) -&gt; ()&gt;) -&gt; some&gt;&gt;.0)&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.TupleView&lt;(expences_app_swiftui.DayRow, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.DynamicViewContent.onDelete(perform: Swift.Optional&lt;(Foundation.IndexSet) -&gt; ()&gt;) -&gt; some&gt;&gt;.0)&gt;&gt; in closure #1 (Swift.Int) -&gt; SwiftUI.Section&lt;SwiftUI.Text, SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.TupleView&lt;(expences_app_swiftui.DayRow, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.DynamicViewContent.onDelete(perform: Swift.Optional&lt;(Foundation.IndexSet) -&gt; ()&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;, SwiftUI.EmptyView&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.Section&lt;SwiftUI.Text, SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.TupleView&lt;(expences_app_swiftui.DayRow, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.DynamicViewContent.onDelete(perform: Swift.Optional&lt;(Foundation.IndexSet) -&gt; ()&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;, SwiftUI.EmptyView&gt;&gt; in expences_app_swiftui.ExpensesListUIView.body.getter : some"
+                  moduleName = "expences-app-swiftui"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/expences-project/expences-app-swiftui/Views/ExpensesListUIView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "418">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

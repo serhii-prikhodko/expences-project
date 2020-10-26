@@ -8,21 +8,48 @@
 import SwiftUI
 
 struct ExpensesListUIView: View {
-    let data = JSONParser.parse(from: "expenses")
+    
+    @ObservedObject private var expensesStore = ExpensesStore()
+    
+    @State private var isEditMode: EditMode = .inactive
+    @State private var expense: Expense? = nil
+    @State private var positionIndex: Int = 0
+    @State private var dayIndex: Int = 0
+    @State private var personIndex: Int = 0
+    
     var body: some View {
         List {
-            ForEach(data.expenses) { person in
+            ForEach(expensesStore.expenses.indices) { personIndex in
+                let person = expensesStore.expenses[personIndex]
                 Section(header: Text(person.name)) {
-                    ForEach(0..<person.weeklyExpenses.count) { index in
-                        Text("Day \(index + 1)")
-                            .foregroundColor(Color.blue)
-                        ExpensesByDay(expensesByDay: person.weeklyExpenses[index].dailyExpenses)
+                    ForEach(person.weeklyExpenses.indices) { dayIndex in
+                        DayRow(dayIndex: dayIndex, personIndex: personIndex, positionIndex: 0, expensesStore: expensesStore, isEditMode: $isEditMode)
+                        ForEach(person.weeklyExpenses[dayIndex].dailyExpenses.indices, id: \.hashValue) { positionIndex in
+                            ExpenseRow(expense: person.weeklyExpenses[dayIndex].dailyExpenses[positionIndex])
+                                // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
+                                .contentShape(Rectangle())
+                                // Line below makes tap gesture possible for each row in list
+                                .onTapGesture {
+                                    self.positionIndex = positionIndex
+                                    self.dayIndex = dayIndex
+                                    self.personIndex = personIndex
+                                    expense = person.weeklyExpenses[dayIndex].dailyExpenses[positionIndex]
+                                }
+                        }
+                        .onDelete { (indexSet) in
+                            expensesStore.deleteExpense(personIndex: personIndex, dayIndex: dayIndex, at: indexSet)
+                        }
                     }
                 }
             }
         }
+        .sheet(item: $expense, content: { expense in
+            ExpenseEditingView(expense: $expense, personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expensesStore: expensesStore, operation: .update)
+        })
         .navigationBarTitle("Expenses", displayMode: .inline)
         .listStyle(GroupedListStyle())
+        .navigationBarItems(trailing: EditButton())
+        .environment(\.editMode, $isEditMode)
     }
 }
 
@@ -32,13 +59,25 @@ struct ExpensesUIView_Previews: PreviewProvider {
     }
 }
 
-struct ExpensesByDay: View {
-    let expensesByDay: [Expense]
+struct DayRow: View {
+    var dayIndex: Int
+    var personIndex: Int
+    var positionIndex: Int
+    var expensesStore: ExpensesStore
+    @State private var expense: Expense? = nil
+    @Binding var isEditMode: EditMode
+    
     var body: some View {
-        ForEach(expensesByDay) { expense in
-            HStack {
-                ExpenseRow(expense: expense)
+        HStack {
+            Text("Day \(dayIndex + 1)")
+                .foregroundColor(Color.blue)
+            Spacer()
+            Button(action: { expense = Expense(name: "", amount: 0) }) {
+                Image(systemName: "plus")
             }
+            .sheet(item: $expense, content: { expense in
+                ExpenseEditingView(expense: $expense, personIndex: .constant(personIndex), dayIndex: .constant(dayIndex), positionIndex: .constant(positionIndex), expensesStore: expensesStore, operation: .create)
+            })
         }
     }
 }

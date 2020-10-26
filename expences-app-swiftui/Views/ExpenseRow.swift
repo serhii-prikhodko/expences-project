@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ExpenseRow: View {
+    
     var expense: Expense
     
     var body: some View {
