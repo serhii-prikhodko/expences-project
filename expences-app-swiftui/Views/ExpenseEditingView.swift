@@ -22,10 +22,10 @@ struct ExpenseEditingView: View {
     
     @ObservedObject var expensesStore: ExpensesStore
     
-    var operation: OperationType
-    var alertTitle: String = "Information"
-    var alertText: String = "Entered amount is incorrect"
-    var alertDismissButtonText: String = "OK"
+    let operation: OperationType
+    let alertTitle: String = "Information"
+    let alertText: String = "Entered amount is incorrect"
+    let alertDismissButtonText: String = "OK"
     
     var body: some View {
         NavigationView {
