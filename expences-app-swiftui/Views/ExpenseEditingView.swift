@@ -51,23 +51,23 @@ struct ExpenseEditingView: View {
                     Button(action: { handleExpense(operation: operation) }) {
                         Text(actionButtonText)
                     }
-                    .disabled(self.name.isEmpty || self.amount.isEmpty)
+                    .disabled(name.isEmpty || amount.isEmpty)
                     .alert(isPresented: $showAlert) {
-                        Alert(title: Text(self.alertTitle), message: Text(self.alertText), dismissButton: .cancel(Text(self.alertDismissButtonText)))
+                        Alert(title: Text(alertTitle), message: Text(alertText), dismissButton: .cancel(Text(alertDismissButtonText)))
                     }
             )
         }
     }
     
     private func handleExpense(operation: OperationType) {
-        let enteredAmount = checkEnteredValue(value: self.amount)
+        let enteredAmount = checkEnteredValue(value: amount)
         guard let amountValue = enteredAmount else {
-            self.amount = ""
-            self.showAlert = true
+            amount = ""
+            showAlert = true
             
             return
         }
-        let expense = Expense(name: self.name, amount: amountValue)
+        let expense = Expense(name: name, amount: amountValue)
         
         switch operation {
         case .create:
@@ -87,19 +87,19 @@ struct ExpenseEditingView: View {
     
     private func checkTranferedExpense() {
         guard let expense = expense else { return }
-        self.name = expense.name
-        self.amount = String(format: "%.2f", expense.amount)
+        name = expense.name
+        amount = String(format: "%.2f", expense.amount)
         
     }
     
     private func checkOperationType(operation: OperationType) {
         switch operation {
         case .create:
-            self.navigationText = "Add New Expense"
-            self.actionButtonText = "Create"
+            navigationText = "Add New Expense"
+            actionButtonText = "Create"
         case .update:
-            self.navigationText = "Update Expense"
-            self.actionButtonText = "Save"
+            navigationText = "Update Expense"
+            actionButtonText = "Save"
         }
     }
 }

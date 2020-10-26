@@ -49,7 +49,7 @@ struct ExpensesListUIView: View {
         .navigationBarTitle("Expenses", displayMode: .inline)
         .listStyle(GroupedListStyle())
         .navigationBarItems(trailing: EditButton())
-        .environment(\.editMode, self.$isEditMode)
+        .environment(\.editMode, $isEditMode)
     }
 }
 
