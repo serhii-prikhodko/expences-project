@@ -10,6 +10,7 @@ import SwiftUI
 struct ExpensesListUIView: View {
     
     @ObservedObject private var expensesStore = ExpensesStore()
+    
     @State private var isEditMode: EditMode = .inactive
     @State private var expense: Expense? = nil
     @State private var positionIndex: Int = 0

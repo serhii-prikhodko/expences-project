@@ -10,16 +10,22 @@ import SwiftUI
 struct ExpenseEditingView: View {
     
     @Binding var expense: Expense?
-    @State var name = ""
-    @State var amount = ""
-    @State var showAlert = false
     @Binding var personIndex: Int
     @Binding var dayIndex: Int
     @Binding var positionIndex: Int
-    @ObservedObject var expensesStore: ExpensesStore
-    var operation: OperationType
+    
+    @State var name = ""
+    @State var amount = ""
+    @State var showAlert = false
     @State var navigationText = ""
     @State var actionButtonText = ""
+    
+    @ObservedObject var expensesStore: ExpensesStore
+    
+    var operation: OperationType
+    var alertTitle: String = "Information"
+    var alertText: String = "Entered amount is incorrect"
+    var alertDismissButtonText: String = "OK"
     
     var body: some View {
         NavigationView {
@@ -47,7 +53,7 @@ struct ExpenseEditingView: View {
                     }
                     .disabled(self.name.isEmpty || self.amount.isEmpty)
                     .alert(isPresented: $showAlert) {
-                        Alert(title: Text("Information"), message: Text("Entered amount is incorrect"), dismissButton: .cancel(Text("OK")))
+                        Alert(title: Text(self.alertTitle), message: Text(self.alertText), dismissButton: .cancel(Text(self.alertDismissButtonText)))
                     }
             )
         }
@@ -55,13 +61,13 @@ struct ExpenseEditingView: View {
     
     private func handleExpense(operation: OperationType) {
         let enteredAmount = checkEnteredValue(value: self.amount)
-        guard enteredAmount != nil else {
+        guard let amountValue = enteredAmount else {
             self.amount = ""
             self.showAlert = true
             
             return
         }
-        let expense = Expense(name: self.name, amount: enteredAmount!)
+        let expense = Expense(name: self.name, amount: amountValue)
         
         switch operation {
         case .create:
