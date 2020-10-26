@@ -86,9 +86,9 @@ struct ExpenseEditingView: View {
     }
     
     private func checkTranferedExpense() {
-        guard self.expense != nil else { return }
-        self.name = self.expense!.name
-        self.amount = String(format: "%.2f", self.expense!.amount)
+        guard let expense = expense else { return }
+        self.name = expense.name
+        self.amount = String(format: "%.2f", expense.amount)
         
     }
     

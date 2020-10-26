@@ -19,14 +19,14 @@ class ExpensesStore: ObservableObject {
     }
     
     func addExpense(personIndex: Int, dayIndex: Int, expense: Expense) {
-        self.expenses[personIndex].weeklyExpenses[dayIndex].dailyExpenses.append(expense)
+        expenses[personIndex].weeklyExpenses[dayIndex].dailyExpenses.append(expense)
     }
     
     func updateExpense(personIndex: Int, dayIndex: Int, positionIndex: Int, expense: Expense) {
-        self.expenses[personIndex].weeklyExpenses[dayIndex].dailyExpenses[positionIndex] = expense
+        expenses[personIndex].weeklyExpenses[dayIndex].dailyExpenses[positionIndex] = expense
     }
     
     func deleteExpense(personIndex: Int, dayIndex: Int, at offsets: IndexSet) {
-        self.expenses[personIndex].weeklyExpenses[dayIndex].dailyExpenses.remove(atOffsets: offsets)
+        expenses[personIndex].weeklyExpenses[dayIndex].dailyExpenses.remove(atOffsets: offsets)
     }
 }

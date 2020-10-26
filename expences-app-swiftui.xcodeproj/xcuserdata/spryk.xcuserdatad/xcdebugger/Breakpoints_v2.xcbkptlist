@@ -168,7 +168,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "B7067822-2B52-43E0-900F-A62714A8B6FB"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "expences-app-swiftui/Views/ExpenseEditingView.swift"
@@ -184,7 +184,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "70856FE5-AD06-4FF1-8371-B6D27BEBFBD8"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "expences-app-swiftui/Views/ExpenseEditingView.swift"
@@ -196,7 +196,7 @@
             landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "70856FE5-AD06-4FF1-8371-B6D27BEBFBD8 - da437105b74bd0f3"
+                  uuid = "70856FE5-AD06-4FF1-8371-B6D27BEBFBD8 - da437105b74bd039"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -206,12 +206,12 @@
                   urlString = "file:///Users/spryk/Documents/code_examples/Expences/expences-app-swiftui/Views/ExpenseEditingView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
                   offsetFromSymbolStart = "1799">
                </Location>
                <Location
-                  uuid = "70856FE5-AD06-4FF1-8371-B6D27BEBFBD8 - 9cfe81efa7f0d2e3"
+                  uuid = "70856FE5-AD06-4FF1-8371-B6D27BEBFBD8 - 9cfe81efa7f0d229"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -221,12 +221,12 @@
                   urlString = "file:///Users/spryk/Documents/code_examples/Expences/expences-app-swiftui/Views/ExpenseEditingView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
                   offsetFromSymbolStart = "30">
                </Location>
                <Location
-                  uuid = "70856FE5-AD06-4FF1-8371-B6D27BEBFBD8 - be3e8bef67b9be75"
+                  uuid = "70856FE5-AD06-4FF1-8371-B6D27BEBFBD8 - be3e8bef67b9bebf"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -236,8 +236,8 @@
                   urlString = "file:///Users/spryk/Documents/code_examples/Expences/expences-app-swiftui/Views/ExpenseEditingView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "46"
-                  endingLineNumber = "46"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
                   offsetFromSymbolStart = "95">
                </Location>
             </Locations>
