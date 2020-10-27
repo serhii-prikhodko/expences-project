@@ -20,6 +20,8 @@ struct ExpenseEditingView: View {
     let alertText: String = "Entered amount is incorrect"
     let alertDismissButtonText: String = "OK"
     
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         NavigationView {
             Form {
@@ -37,11 +39,17 @@ struct ExpenseEditingView: View {
             .navigationBarTitle(navigationText, displayMode: .inline)
             .navigationBarItems(
                 leading:
-                    Button(action: { viewModel.expense = nil }) {
+                    Button(action: {
+                        viewModel.expense = nil
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
                         Text("Cancel")
                     },
                 trailing:
-                    Button(action: { viewModel.handleExpense(operation: operation) }) {
+                    Button(action: {
+                        viewModel.handleExpense(operation: operation)
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
                         Text(actionButtonText)
                     }
                     .disabled(viewModel.name.isEmpty || viewModel.amount.isEmpty)
