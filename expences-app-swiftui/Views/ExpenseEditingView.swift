@@ -9,18 +9,11 @@ import SwiftUI
 
 struct ExpenseEditingView: View {
     
-    @Binding var expense: Expense?
-    @Binding var personIndex: Int
-    @Binding var dayIndex: Int
-    @Binding var positionIndex: Int
     
-    @State var name = ""
-    @State var amount = ""
-    @State var showAlert = false
     @State var navigationText = ""
     @State var actionButtonText = ""
     
-    @ObservedObject var expensesStore: ExpensesStore
+    @ObservedObject var viewModel: ExpenseEditingViewModel
     
     let operation: OperationType
     let alertTitle: String = "Information"
@@ -31,65 +24,32 @@ struct ExpenseEditingView: View {
         NavigationView {
             Form {
                 Section(header: Text("Name")) {
-                    TextField("Enter name here", text: $name)
+                    TextField("Enter name here", text: $viewModel.name)
                 }
                 Section(header: Text("Amount")) {
-                    TextField("Enter amount here", text: $amount)
+                    TextField("Enter amount here", text: $viewModel.amount)
                 }
             }
             .onAppear(perform: {
-                checkTranferedExpense()
+                viewModel.checkTranferedExpense()
                 checkOperationType(operation: operation)
             })
             .navigationBarTitle(navigationText, displayMode: .inline)
             .navigationBarItems(
                 leading:
-                    Button(action: { expense = nil }) {
+                    Button(action: { viewModel.expense = nil }) {
                         Text("Cancel")
                     },
                 trailing:
-                    Button(action: { handleExpense(operation: operation) }) {
+                    Button(action: { viewModel.handleExpense(operation: operation) }) {
                         Text(actionButtonText)
                     }
-                    .disabled(name.isEmpty || amount.isEmpty)
-                    .alert(isPresented: $showAlert) {
+                    .disabled(viewModel.name.isEmpty || viewModel.amount.isEmpty)
+                    .alert(isPresented: $viewModel.showAlert) {
                         Alert(title: Text(alertTitle), message: Text(alertText), dismissButton: .cancel(Text(alertDismissButtonText)))
                     }
             )
         }
-    }
-    
-    private func handleExpense(operation: OperationType) {
-        let enteredAmount = checkEnteredValue(value: amount)
-        guard let amountValue = enteredAmount else {
-            amount = ""
-            showAlert = true
-            
-            return
-        }
-        let expense = Expense(name: name, amount: amountValue)
-        
-        switch operation {
-        case .create:
-            expensesStore.addExpense(personIndex: personIndex, dayIndex: dayIndex, expense: expense)
-        case .update:
-            expensesStore.updateExpense(personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, expense: expense)
-        }
-        
-        self.expense = nil
-    }
-    
-    private func checkEnteredValue(value: String) -> Double? {
-        let doubleValue = Double(value)
-        
-        return doubleValue
-    }
-    
-    private func checkTranferedExpense() {
-        guard let expense = expense else { return }
-        name = expense.name
-        amount = String(format: "%.2f", expense.amount)
-        
     }
     
     private func checkOperationType(operation: OperationType) {
@@ -106,6 +66,6 @@ struct ExpenseEditingView: View {
 
 struct AddExpense_Previews: PreviewProvider {
     static var previews: some View {
-        ExpenseEditingView(expense: .constant(Expense(name: "Item", amount: 1.00)), personIndex: .constant(0), dayIndex: .constant(0), positionIndex: .constant(0), expensesStore: ExpensesStore(), operation: .create )
+        ExpenseEditingView(viewModel: ExpenseEditingViewModel(expensesStore: ExpensesStore(), expense: Expense(name: "Item", amount: 1.00), personIndex: 0, dayIndex: 0, positionIndex: 0, showAlert: true), operation: .create)
     }
 }
