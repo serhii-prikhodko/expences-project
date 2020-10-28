@@ -7,7 +7,12 @@
 
 import Foundation
 
-class ExpensesStore: ObservableObject {
+protocol ExpensesStoreProtocol {
+    
+    static func loadExpenses() -> [ExpensesByPerson]
+}
+
+class ExpensesStore: ObservableObject, ExpensesStoreProtocol {
     
     @Published var expenses = loadExpenses()
     
