@@ -17,6 +17,8 @@ class ExpenseEditingViewModel: ObservableObject {
     @Published var dayIndex: Int
     @Published var positionIndex: Int
     @Published var showAlert: Bool
+    @Published var navigationText = ""
+    @Published var actionButtonText = ""
     
     init(expensesStore: ExpensesStore, expense: Expense, personIndex: Int, dayIndex: Int, positionIndex: Int, showAlert: Bool) {
         self.expensesStore = expensesStore
@@ -58,5 +60,16 @@ class ExpenseEditingViewModel: ObservableObject {
         name = expense.name
         amount = String(format: "%.2f", expense.amount)
         
+    }
+    
+    public func checkOperationType(operation: OperationType) {
+        switch operation {
+        case .create:
+            navigationText = "Add New Expense"
+            actionButtonText = "Create"
+        case .update:
+            navigationText = "Update Expense"
+            actionButtonText = "Save"
+        }
     }
 }

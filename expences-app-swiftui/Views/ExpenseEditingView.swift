@@ -9,10 +9,6 @@ import SwiftUI
 
 struct ExpenseEditingView: View {
     
-    
-    @State var navigationText = ""
-    @State var actionButtonText = ""
-    
     @ObservedObject var viewModel: ExpenseEditingViewModel
     
     let operation: OperationType
@@ -34,9 +30,9 @@ struct ExpenseEditingView: View {
             }
             .onAppear(perform: {
                 viewModel.checkTranferedExpense()
-                checkOperationType(operation: operation)
+                viewModel.checkOperationType(operation: operation)
             })
-            .navigationBarTitle(navigationText, displayMode: .inline)
+            .navigationBarTitle(viewModel.navigationText, displayMode: .inline)
             .navigationBarItems(
                 leading:
                     Button(action: {
@@ -50,24 +46,13 @@ struct ExpenseEditingView: View {
                         viewModel.handleExpense(operation: operation)
                         self.presentationMode.wrappedValue.dismiss()
                     }) {
-                        Text(actionButtonText)
+                        Text(viewModel.actionButtonText)
                     }
                     .disabled(viewModel.name.isEmpty || viewModel.amount.isEmpty)
                     .alert(isPresented: $viewModel.showAlert) {
                         Alert(title: Text(alertTitle), message: Text(alertText), dismissButton: .cancel(Text(alertDismissButtonText)))
                     }
             )
-        }
-    }
-    
-    private func checkOperationType(operation: OperationType) {
-        switch operation {
-        case .create:
-            navigationText = "Add New Expense"
-            actionButtonText = "Create"
-        case .update:
-            navigationText = "Update Expense"
-            actionButtonText = "Save"
         }
     }
 }
