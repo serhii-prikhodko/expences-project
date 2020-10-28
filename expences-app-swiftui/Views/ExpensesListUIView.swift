@@ -44,7 +44,8 @@ struct ExpensesListUIView: View {
             }
         }
         .sheet(item: $expense, content: { expense in
-            ExpenseEditingView(viewModel: ExpenseEditingViewModel(expensesStore: expensesStore, showAlert: false), personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expense: $expense, operation: .update)
+            let viewModel = ExpenseEditingViewModel(expensesStore: expensesStore)
+            ExpenseEditingView(viewModel: viewModel, personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expense: $expense, operation: .update)
         })
         .navigationBarTitle("Expenses", displayMode: .inline)
         .listStyle(GroupedListStyle())
@@ -78,7 +79,8 @@ struct DayRow: View {
                 Image(systemName: "plus")
             }
             .sheet(item: $expense, content: { expense in
-                ExpenseEditingView(viewModel: ExpenseEditingViewModel(expensesStore: expensesStore, showAlert: false), personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expense: $expense, operation: .create)
+                let viewModel = ExpenseEditingViewModel(expensesStore: expensesStore)
+                ExpenseEditingView(viewModel: viewModel, personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expense: $expense, operation: .create)
             })
         }
     }

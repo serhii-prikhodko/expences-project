@@ -65,6 +65,7 @@ struct ExpenseEditingView: View {
 
 struct AddExpense_Previews: PreviewProvider {
     static var previews: some View {
-        ExpenseEditingView(viewModel: ExpenseEditingViewModel(expensesStore: ExpensesStore(), showAlert: true), personIndex: .constant(0), dayIndex: .constant(0), positionIndex: .constant(0), expense: .constant(Expense(name: "Juice", amount: 2.32)), operation: .create)
+        let viewModel = ExpenseEditingViewModel(expensesStore: ExpensesStore())
+        ExpenseEditingView(viewModel: viewModel, personIndex: .constant(0), dayIndex: .constant(0), positionIndex: .constant(0), expense: .constant(Expense(name: "Juice", amount: 2.32)), operation: .create)
     }
 }

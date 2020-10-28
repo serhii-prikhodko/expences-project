@@ -12,13 +12,12 @@ class ExpenseEditingViewModel: ObservableObject {
     @Published var name: String = ""
     @Published var amount: String = ""
     @Published var expensesStore: ExpensesStore
-    @Published var showAlert: Bool
+    @Published var showAlert: Bool = false
     @Published var navigationText = ""
     @Published var actionButtonText = ""
     
-    init(expensesStore: ExpensesStore, showAlert: Bool) {
+    init(expensesStore: ExpensesStore) {
         self.expensesStore = expensesStore
-        self.showAlert = showAlert
     }
     
     public func handleExpense(operation: OperationType, personIndex: Int, dayIndex: Int, positionIndex: Int) {
