@@ -78,8 +78,8 @@
             filePath = "expences-app-swiftui/Views/ExpenseEditingView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -142,8 +142,8 @@
             filePath = "expences-app-swiftui/Views/ExpenseEditingView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -205,9 +205,9 @@
             filePath = "expences-app-swiftui/ViewModel/ExpenseEditingViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "handleExpense(operation:)"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "handleExpense(operation:personIndex:dayIndex:positionIndex:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

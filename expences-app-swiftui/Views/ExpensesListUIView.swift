@@ -23,7 +23,7 @@ struct ExpensesListUIView: View {
                 let person = expensesStore.expenses[personIndex]
                 Section(header: Text(person.name)) {
                     ForEach(person.weeklyExpenses.indices) { dayIndex in
-                        DayRow(dayIndex: dayIndex, personIndex: personIndex, positionIndex: 0, expensesStore: expensesStore, isEditMode: $isEditMode)
+                        DayRow(dayIndex: dayIndex, personIndex: personIndex, positionIndex: 0, isEditMode: $isEditMode, expensesStore: expensesStore)
                         ForEach(person.weeklyExpenses[dayIndex].dailyExpenses.indices, id: \.hashValue) { positionIndex in
                             ExpenseRow(expense: person.weeklyExpenses[dayIndex].dailyExpenses[positionIndex])
                                 // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
@@ -44,7 +44,7 @@ struct ExpensesListUIView: View {
             }
         }
         .sheet(item: $expense, content: { expense in
-            ExpenseEditingView(viewModel: ExpenseEditingViewModel(expensesStore: expensesStore, expense: expense, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, showAlert: false), operation: .update)
+            ExpenseEditingView(viewModel: ExpenseEditingViewModel(expensesStore: expensesStore, showAlert: false), personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expense: $expense, operation: .update)
         })
         .navigationBarTitle("Expenses", displayMode: .inline)
         .listStyle(GroupedListStyle())
@@ -60,12 +60,14 @@ struct ExpensesUIView_Previews: PreviewProvider {
 }
 
 struct DayRow: View {
-    var dayIndex: Int
-    var personIndex: Int
-    var positionIndex: Int
-    var expensesStore: ExpensesStore
+    @State var dayIndex: Int
+    @State var personIndex: Int
+    @State var positionIndex: Int
     @State private var expense: Expense? = nil
+    
     @Binding var isEditMode: EditMode
+    
+    var expensesStore: ExpensesStore
     
     var body: some View {
         HStack {
@@ -76,7 +78,7 @@ struct DayRow: View {
                 Image(systemName: "plus")
             }
             .sheet(item: $expense, content: { expense in
-                ExpenseEditingView(viewModel: ExpenseEditingViewModel(expensesStore: expensesStore, expense: expense, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, showAlert: false), operation: .create)
+                ExpenseEditingView(viewModel: ExpenseEditingViewModel(expensesStore: expensesStore, showAlert: false), personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expense: $expense, operation: .create)
             })
         }
     }

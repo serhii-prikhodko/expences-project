@@ -11,12 +11,15 @@ struct ExpenseEditingView: View {
     
     @ObservedObject var viewModel: ExpenseEditingViewModel
     
+    @Binding var personIndex: Int
+    @Binding var dayIndex: Int
+    @Binding var positionIndex: Int
+    @Binding var expense: Expense?
+    
     let operation: OperationType
     let alertTitle: String = "Information"
     let alertText: String = "Entered amount is incorrect"
     let alertDismissButtonText: String = "OK"
-    
-    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         NavigationView {
@@ -29,22 +32,21 @@ struct ExpenseEditingView: View {
                 }
             }
             .onAppear(perform: {
-                viewModel.checkTranferedExpense()
+                viewModel.checkTranferedExpense(expense: expense)
                 viewModel.checkOperationType(operation: operation)
             })
             .navigationBarTitle(viewModel.navigationText, displayMode: .inline)
             .navigationBarItems(
                 leading:
                     Button(action: {
-                        viewModel.expense = nil
-                        self.presentationMode.wrappedValue.dismiss()
+                        dismissView()
                     }) {
                         Text("Cancel")
                     },
                 trailing:
                     Button(action: {
-                        viewModel.handleExpense(operation: operation)
-                        self.presentationMode.wrappedValue.dismiss()
+                        viewModel.handleExpense(operation: operation, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex)
+                        dismissView()
                     }) {
                         Text(viewModel.actionButtonText)
                     }
@@ -55,10 +57,14 @@ struct ExpenseEditingView: View {
             )
         }
     }
+    
+    private func dismissView() {
+        expense = nil
+    }
 }
 
 struct AddExpense_Previews: PreviewProvider {
     static var previews: some View {
-        ExpenseEditingView(viewModel: ExpenseEditingViewModel(expensesStore: ExpensesStore(), expense: Expense(name: "Item", amount: 1.00), personIndex: 0, dayIndex: 0, positionIndex: 0, showAlert: true), operation: .create)
+        ExpenseEditingView(viewModel: ExpenseEditingViewModel(expensesStore: ExpensesStore(), showAlert: true), personIndex: .constant(0), dayIndex: .constant(0), positionIndex: .constant(0), expense: .constant(Expense(name: "Juice", amount: 2.32)), operation: .create)
     }
 }
