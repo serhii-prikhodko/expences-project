@@ -70,7 +70,7 @@ class ExpenseEditingViewModelUnitTests: XCTestCase {
     func test_func_handleExpense_create() {
         viewModel.name = "New item"
         viewModel.amount = "2.25"
-        viewModel.handleExpense(operation: .create, personIndex: 0, dayIndex: 0, positionIndex: 0)
+        viewModel.handleExpense(operation: .create, personIndex: 0, dayIndex: 0, positionIndex: 0, action: dismissView)
         let createdExpense = viewModel.expensesStore.expenses[0].weeklyExpenses[0].dailyExpenses.last
         
         XCTAssertEqual(createdExpense?.name, "New item")
@@ -80,10 +80,12 @@ class ExpenseEditingViewModelUnitTests: XCTestCase {
     func test_func_handleExpense_update() {
         viewModel.name = "Updated item"
         viewModel.amount = "2.25"
-        viewModel.handleExpense(operation: .update, personIndex: 0, dayIndex: 0, positionIndex: 0)
+        viewModel.handleExpense(operation: .update, personIndex: 0, dayIndex: 0, positionIndex: 0, action: dismissView)
         let createdExpense = viewModel.expensesStore.expenses[0].weeklyExpenses[0].dailyExpenses[0]
         
         XCTAssertEqual(createdExpense.name, "Updated item")
         XCTAssertEqual(createdExpense.amount, 2.25)
     }
+    
+    func dismissView() {}
 }

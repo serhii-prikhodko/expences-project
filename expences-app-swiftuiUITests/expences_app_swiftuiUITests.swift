@@ -119,8 +119,6 @@ class expences_app_swiftuiUITests: XCTestCase {
             // Check created expense in list
             XCTAssertTrue(app.cells.staticTexts["New test expense"].waitForExistence(timeout: 5.0), "Can't find new expense 'New test expense' on the screen")
             XCTAssertTrue(app.cells.staticTexts["$ 123.45"].waitForExistence(timeout: 5.0), "Can't find new expense amount '123.45' on the screen")
-            
-            
         }
     }
     
@@ -185,11 +183,11 @@ extension XCUIElement {
             return
         }
 
-        self.tap()
+        tap()
 
         let deleteString = String(repeating: XCUIKeyboardKey.delete.rawValue, count: stringValue.count)
 
-        self.typeText(deleteString)
-        self.typeText(text)
+        typeText(deleteString)
+        typeText(text)
     }
 }
