@@ -20,7 +20,7 @@ class ExpenseEditingViewModel: ObservableObject {
         self.expensesStore = expensesStore
     }
     
-    public func handleExpense(operation: OperationType, personIndex: Int, dayIndex: Int, positionIndex: Int) {
+    public func handleExpense(operation: OperationType, personIndex: Int, dayIndex: Int, positionIndex: Int, action: () -> Void) {
         let enteredAmount = checkEnteredValue(value: amount)
         guard let amountValue = enteredAmount else {
             amount = ""
@@ -36,6 +36,8 @@ class ExpenseEditingViewModel: ObservableObject {
         case .update:
             expensesStore.updateExpense(personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, expense: expense)
         }
+        
+        action()
     }
     
     public func checkEnteredValue(value: String) -> Double? {

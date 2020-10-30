@@ -38,15 +38,12 @@ struct ExpenseEditingView: View {
             .navigationBarTitle(viewModel.navigationText, displayMode: .inline)
             .navigationBarItems(
                 leading:
-                    Button(action: {
-                        dismissView()
-                    }) {
+                    Button(action: { dismissView() }) {
                         Text("Cancel")
                     },
                 trailing:
                     Button(action: {
-                        viewModel.handleExpense(operation: operation, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex)
-                        dismissView()
+                        viewModel.handleExpense(operation: operation, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, action: dismissView)
                     }) {
                         Text(viewModel.actionButtonText)
                     }
