@@ -72,6 +72,103 @@ class expences_app_swiftuiUITests: XCTestCase {
         }
     }
     
+    func testCallWindowForNewExpense() throws {
+        
+        // Find button by name
+        let button = app.buttons["Show Expenses"]
+        
+        XCTContext.runActivity(named: "Open launch screen") { _ in
+            XCTAssertTrue(button.waitForExistence(timeout: 5.0))
+            
+            // Open expenses screen
+            button.tap()
+            
+            // Find first plus button and tap on it
+            app.cells.buttons["plus"].firstMatch.tap()
+            
+            // Check that new window is appeared
+            XCTAssertTrue(app.navigationBars.staticTexts["Add New Expense"].waitForExistence(timeout: 5.0))
+        }
+    }
+    
+    func testCreateNewExpense() throws {
+        
+        // Find button by name
+        let button = app.buttons["Show Expenses"]
+        
+        XCTContext.runActivity(named: "Open launch screen") { _ in
+            XCTAssertTrue(button.waitForExistence(timeout: 5.0))
+            
+            // Open expenses screen
+            button.tap()
+            
+            // Find first plus button and tap on it
+            app.cells.buttons["plus"].firstMatch.tap()
+            
+            let nameTextField = app.textFields["Enter name here"]
+            nameTextField.tap()
+            
+            // Enter name for future expense
+            nameTextField.typeText("New test expense")
+            
+            let amountTextField = app.textFields["Enter amount here"]
+            amountTextField.tap()
+            
+            // Enter amount for future expense
+            amountTextField.clearAndEnterText(text: "123.45")
+            
+            // Save new expense
+            let createButton = app.buttons["Create"]
+            createButton.tap()
+            
+            // Check created expense in list
+            XCTAssertTrue(app.cells.staticTexts["New test expense"].waitForExistence(timeout: 5.0), "Can't find new expense 'New test expense' on the screen")
+            XCTAssertTrue(app.cells.staticTexts["$ 123.45"].waitForExistence(timeout: 5.0), "Can't find new expense amount '123.45' on the screen")
+            
+            
+        }
+    }
+    
+    func testEditAndDeleteExpense() throws {
+        
+        // Find button by name
+        let button = app.buttons["Show Expenses"]
+        
+        XCTContext.runActivity(named: "Open launch screen") { _ in
+            XCTAssertTrue(button.waitForExistence(timeout: 5.0))
+            
+            // Open expenses screen
+            button.tap()
+            
+            // Create property with all cells
+            let tableCells = app.tables.cells
+            
+            // Tap on first cell with expense
+            tableCells.element(boundBy: 1).tap()
+            
+            // Change epxense details
+            let nameTextField = app.textFields["Enter name here"]
+            nameTextField.tap()
+            nameTextField.clearAndEnterText(text: "Edited test expense")
+            
+            let amountTextField = app.textFields["Enter amount here"]
+            amountTextField.tap()
+            amountTextField.clearAndEnterText(text: "43.21")
+            
+            // Save new expense
+            let createButton = app.buttons["Save"]
+            createButton.tap()
+            
+            // Find first cell swipe and delete it
+            tableCells.element(boundBy: 1).swipeLeft()
+            tableCells.element(boundBy: 1).buttons["Delete"].tap()
+            
+            // Check created expense in list
+            XCTAssertFalse(app.cells.staticTexts["Edited test expense"].waitForExistence(timeout: 5.0), "Deleted expense name is still appeared on the screen")
+            XCTAssertFalse(app.cells.staticTexts["$ 43.21"].waitForExistence(timeout: 5.0), "Deleted expense amount is still appeared on the screen")
+        }
+    }
+    
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
             // This measures how long it takes to launch your application.
@@ -79,5 +176,25 @@ class expences_app_swiftuiUITests: XCTestCase {
                 XCUIApplication().launch()
             }
         }
+    }
+}
+
+extension XCUIElement {
+    /**
+     Removes any current text in the field before typing in the new value
+     - Parameter text: the text to enter into the field
+     */
+    func clearAndEnterText(text: String) {
+        guard let stringValue = self.value as? String else {
+            XCTFail("Tried to clear and enter text into a non string value")
+            return
+        }
+
+        self.tap()
+
+        let deleteString = String(repeating: XCUIKeyboardKey.delete.rawValue, count: stringValue.count)
+
+        self.typeText(deleteString)
+        self.typeText(text)
     }
 }
