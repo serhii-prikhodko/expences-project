@@ -15,7 +15,7 @@ struct PersonsListView: View {
         List {
             ForEach(expensesStore.expenses.indices) { personIndex in
                 let personName = expensesStore.expenses[personIndex].name
-                NavigationLink(destination: PersonExpensesView(personExpenses: expensesStore.expenses[personIndex], personIndex: personIndex, personName: personName)) {
+                NavigationLink(destination: PersonExpensesView(personIndex: personIndex, personName: personName)) {
                     Text(expensesStore.expenses[personIndex].name)
                 }
             }
