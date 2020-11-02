@@ -10,10 +10,15 @@ import SwiftUI
 struct LaunchScreenView: View {
     var body: some View {
         NavigationView {
-            NavigationLink(destination: ExpensesListUIView()) {
-                Text("Show Expenses")
+            VStack(spacing: 20) {
+                NavigationLink(destination: ExpensesListUIView()) {
+                    Text("Show Expenses")
+                }
+                NavigationLink(destination: PeopleListView()) {
+                    Text("Show People")
+                }
+                .navigationBarHidden(true)
             }
-            .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
