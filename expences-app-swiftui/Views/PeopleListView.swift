@@ -7,9 +7,12 @@
 
 import SwiftUI
 
-struct PersonsListView: View {
+struct PeopleListView: View {
     
     @ObservedObject private var expensesStore = ExpensesStore()
+    
+    @State private var isEditMode: EditMode = .inactive
+    @State private var showModal: Bool = false
     
     var body: some View {
         List {
@@ -19,14 +22,25 @@ struct PersonsListView: View {
                     Text(expensesStore.expenses[personIndex].name)
                 }
             }
-            
         }
         .navigationBarTitle("People", displayMode: .inline)
+        .navigationBarItems(
+            trailing:
+                HStack {
+                    if isEditMode == .active {
+                        Button(action: { showModal = true }, label: {
+                            Image(systemName: "plus")
+                        })
+                    }
+                    EditButton()
+                }
+        )
+        .environment(\.editMode, $isEditMode)
     }
 }
 
 struct PersonsListView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonsListView()
+        PeopleListView()
     }
 }

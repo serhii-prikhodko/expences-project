@@ -14,8 +14,8 @@ struct LaunchScreenView: View {
                 NavigationLink(destination: ExpensesListUIView()) {
                     Text("Show Expenses")
                 }
-                NavigationLink(destination: PersonsListView()) {
-                    Text("Show Persons")
+                NavigationLink(destination: PeopleListView()) {
+                    Text("Show People")
                 }
                 .navigationBarHidden(true)
             }
