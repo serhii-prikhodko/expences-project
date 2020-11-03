@@ -22,6 +22,7 @@ struct PeopleListView: View {
                     Text(expensesStore.expenses[personIndex].name)
                 }
             }
+            .onDelete(perform: expensesStore.deletePerson)
         }
         .navigationBarTitle("People", displayMode: .inline)
         .navigationBarItems(

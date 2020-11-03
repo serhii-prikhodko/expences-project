@@ -43,7 +43,7 @@ class ExpensesStore: ObservableObject, ExpensesStoreProtocol {
         self.expenses.append(expensesByPerson)
     }
     
-    func deletePerson(personIndex: Int) {
-        expenses.remove(at: personIndex)
+    func deletePerson(at offsets: IndexSet) {
+        expenses.remove(atOffsets: offsets)
     }
 }
