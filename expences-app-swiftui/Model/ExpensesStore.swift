@@ -36,9 +36,11 @@ class ExpensesStore: ObservableObject, ExpensesStoreProtocol {
     }
     
     func addPerson(name: String) {
-        let weeklyExpenses = [DailyExpenses]()
+        let expenses = [Expense]()
+        let dailyExpenses = DailyExpenses(dailyExpenses: expenses)
+        let weeklyExpenses = [dailyExpenses, dailyExpenses, dailyExpenses]
         let expensesByPerson = ExpensesByPerson(name: name, weeklyExpenses: weeklyExpenses)
-        expenses.append(expensesByPerson)
+        self.expenses.append(expensesByPerson)
     }
     
     func deletePerson(personIndex: Int) {

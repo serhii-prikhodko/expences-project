@@ -15,4 +15,8 @@ class NewPersonViewModel: ObservableObject {
     init(expensesStore: ExpensesStore) {
         self.expensesStore = expensesStore
     }
+    
+    func createPerson() {
+        expensesStore.addPerson(name: personName)
+    }
 }

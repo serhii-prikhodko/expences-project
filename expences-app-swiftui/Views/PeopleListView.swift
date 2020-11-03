@@ -16,7 +16,7 @@ struct PeopleListView: View {
     
     var body: some View {
         List {
-            ForEach(expensesStore.expenses.indices) { personIndex in
+            ForEach(expensesStore.expenses.indices, id: \.hashValue) { personIndex in
                 let personName = expensesStore.expenses[personIndex].name
                 NavigationLink(destination: PersonExpensesView(personIndex: personIndex, personName: personName)) {
                     Text(expensesStore.expenses[personIndex].name)

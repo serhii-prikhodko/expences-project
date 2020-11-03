@@ -27,9 +27,12 @@ struct NewPersonView: View {
                         Text("Cancel")
                     },
                 trailing:
-                    Button(action: {isPresented.toggle()}) {
+                    Button(action: {
+                            viewModel.createPerson()
+                            isPresented.toggle()}) {
                         Text("Create")
                     }
+                    .disabled(viewModel.personName.isEmpty)
             )
         }
     }
