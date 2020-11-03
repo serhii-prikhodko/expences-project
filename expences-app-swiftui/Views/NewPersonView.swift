@@ -9,14 +9,15 @@ import SwiftUI
 
 struct NewPersonView: View {
     
-    @State private var personName: String = ""
+    @ObservedObject var viewModel: NewPersonViewModel
+    
     @Binding var isPresented: Bool
     
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("Person's name")) {
-                    TextField("Enter name here", text: $personName)
+                    TextField("Enter name here", text: $viewModel.personName)
                 }
             }
             .navigationBarTitle("Create new person record", displayMode: .inline)
@@ -36,6 +37,7 @@ struct NewPersonView: View {
 
 struct NewPersonView_Previews: PreviewProvider {
     static var previews: some View {
-        NewPersonView(isPresented: .constant(true))
+        let viewModel = NewPersonViewModel(expensesStore: ExpensesStore())
+        NewPersonView(viewModel: viewModel, isPresented: .constant(true))
     }
 }

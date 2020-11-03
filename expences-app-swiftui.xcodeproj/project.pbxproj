@@ -27,6 +27,7 @@
 		1B7ECAD725503F1400216371 /* PersonExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ECAD625503F1400216371 /* PersonExpensesView.swift */; };
 		1B89CF392540796700FF30AF /* OperationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B89CF382540796700FF30AF /* OperationType.swift */; };
 		1B970CBD2551559D00A655BC /* NewPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B970CBC2551559D00A655BC /* NewPersonView.swift */; };
+		1B970CC52551998A00A655BC /* NewPersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B970CC42551998A00A655BC /* NewPersonViewModel.swift */; };
 		1BACDF9F254712C400B8B5B4 /* ExpenseEditingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BACDF9E254712C400B8B5B4 /* ExpenseEditingViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		1B7ECAD625503F1400216371 /* PersonExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonExpensesView.swift; sourceTree = "<group>"; };
 		1B89CF382540796700FF30AF /* OperationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationType.swift; sourceTree = "<group>"; };
 		1B970CBC2551559D00A655BC /* NewPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPersonView.swift; sourceTree = "<group>"; };
+		1B970CC42551998A00A655BC /* NewPersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPersonViewModel.swift; sourceTree = "<group>"; };
 		1BACDF9E254712C400B8B5B4 /* ExpenseEditingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseEditingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				1BACDF9E254712C400B8B5B4 /* ExpenseEditingViewModel.swift */,
+				1B970CC42551998A00A655BC /* NewPersonViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				1B6AC8FB252F401B00486F74 /* JSONParser.swift in Sources */,
 				1B6AC892252F1A4B00486F74 /* LaunchScreenView.swift in Sources */,
 				1BACDF9F254712C400B8B5B4 /* ExpenseEditingViewModel.swift in Sources */,
+				1B970CC52551998A00A655BC /* NewPersonViewModel.swift in Sources */,
 				1B1EB0B4253DDFAE00A894D7 /* ExpensesStore.swift in Sources */,
 				1B6AC8D7252F323200486F74 /* ExpensesListUIView.swift in Sources */,
 				1B7ECAD725503F1400216371 /* PersonExpensesView.swift in Sources */,

@@ -37,7 +37,8 @@ struct PeopleListView: View {
         )
         .environment(\.editMode, $isEditMode)
         .sheet(isPresented: $showModal, content: {
-            NewPersonView(isPresented: $showModal)
+            let viewModel = NewPersonViewModel(expensesStore: expensesStore)
+            NewPersonView(viewModel: viewModel, isPresented: $showModal)
         })
     }
 }
