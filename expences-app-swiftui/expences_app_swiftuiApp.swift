@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct expences_app_swiftuiApp: App {
+    var expensesStore = ExpensesStore()
     var body: some Scene {
         WindowGroup {
-            LaunchScreenView()
+            LaunchScreenView().environmentObject(expensesStore)
         }
     }
 }

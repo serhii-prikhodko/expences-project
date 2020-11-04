@@ -15,4 +15,9 @@ public struct DailyExpenses: Codable, Identifiable {
     enum CodingKeys : String, CodingKey {
         case dailyExpenses = "EXPENSE"
     }
+    
+    public static func emptyDailyExpenses() -> DailyExpenses {
+        
+            return DailyExpenses(dailyExpenses: [])
+        }
 }

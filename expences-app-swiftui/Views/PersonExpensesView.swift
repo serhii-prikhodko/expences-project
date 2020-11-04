@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PersonExpensesView: View {
     
-    @ObservedObject private var expensesStore = ExpensesStore()
+    @ObservedObject var expensesStore = ExpensesStore()
     
     @State private var isEditMode: EditMode = .inactive
     @State private var expense: Expense? = nil
