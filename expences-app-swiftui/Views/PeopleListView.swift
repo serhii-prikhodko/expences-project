@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PeopleListView: View {
     
-    @ObservedObject private var expensesStore = ExpensesStore()
+    @EnvironmentObject var expensesStore: ExpensesStore
     
     @State private var isEditMode: EditMode = .inactive
     @State private var showModal: Bool = false

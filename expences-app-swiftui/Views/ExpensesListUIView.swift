@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExpensesListUIView: View {
     
-    @ObservedObject private var expensesStore = ExpensesStore()
+    @EnvironmentObject var expensesStore: ExpensesStore
     
     @State private var isEditMode: EditMode = .inactive
     @State private var expense: Expense? = nil
@@ -23,7 +23,7 @@ struct ExpensesListUIView: View {
                 let person = expensesStore.expenses[personIndex]
                 Section(header: Text(person.name)) {
                     ForEach(person.weeklyExpenses.indices) { dayIndex in
-                        DayRow(dayIndex: dayIndex, personIndex: personIndex, positionIndex: 0, isEditMode: $isEditMode, expensesStore: expensesStore)
+                        DayRow(dayIndex: dayIndex, personIndex: personIndex, positionIndex: 0, isEditMode: $isEditMode)
                         ForEach(person.weeklyExpenses[dayIndex].dailyExpenses.indices, id: \.hashValue) { positionIndex in
                             ExpenseRow(expense: person.weeklyExpenses[dayIndex].dailyExpenses[positionIndex])
                                 // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
@@ -55,8 +55,9 @@ struct ExpensesListUIView: View {
 }
 
 struct ExpensesUIView_Previews: PreviewProvider {
+    static let expensesStore = ExpensesStore()
     static var previews: some View {
-        ExpensesListUIView()
+        ExpensesListUIView().environmentObject(expensesStore)
     }
 }
 
@@ -68,7 +69,7 @@ struct DayRow: View {
     
     @Binding var isEditMode: EditMode
     
-    var expensesStore: ExpensesStore
+    @EnvironmentObject var expensesStore: ExpensesStore
     
     var body: some View {
         HStack {

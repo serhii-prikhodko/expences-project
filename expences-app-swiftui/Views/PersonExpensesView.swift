@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PersonExpensesView: View {
     
-    @ObservedObject var expensesStore = ExpensesStore()
+    @EnvironmentObject var expensesStore: ExpensesStore
     
     @State private var isEditMode: EditMode = .inactive
     @State private var expense: Expense? = nil
@@ -21,10 +21,10 @@ struct PersonExpensesView: View {
     
     var body: some View {
         List {
-            ForEach(expensesStore.expenses[personIndex].weeklyExpenses.indices, id: \.hashValue) { dayIndex in
+            ForEach(expensesStore.expenses[personIndex].weeklyExpenses.indices) { dayIndex in
                 let dailyExpenses = expensesStore.expenses[personIndex].weeklyExpenses[dayIndex]
-                DayRow(dayIndex: dayIndex, personIndex: personIndex, positionIndex: 0, isEditMode: $isEditMode, expensesStore: expensesStore)
-                ForEach(dailyExpenses.dailyExpenses.indices) { positionIndex in
+                DayRow(dayIndex: dayIndex, personIndex: personIndex, positionIndex: 0, isEditMode: $isEditMode)
+                ForEach(dailyExpenses.dailyExpenses.indices, id: \.hashValue) { positionIndex in
                     ExpenseRow(expense: dailyExpenses.dailyExpenses[positionIndex])
                         // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
                         .contentShape(Rectangle())
