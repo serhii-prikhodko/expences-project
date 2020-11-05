@@ -9,20 +9,24 @@ import SwiftUI
 
 struct LaunchScreenView: View {
     var body: some View {
-        NavigationView {
-            VStack(spacing: 20) {
-                NavigationLink(destination: ExpensesListUIView()) {
-                    Text("Show Expenses")
-                        .titleStyle()
+        GeometryReader { geometry in
+            NavigationView {
+                VStack(spacing: 20) {
+                    NavigationLink(destination: ExpensesListUIView()) {
+                        Text("Show Expenses")
+                            .frame(width: geometry.size.width/2)
+                            .titleStyle()
+                    }
+                    NavigationLink(destination: PeopleListView()) {
+                        Text("Show People")
+                            .frame(width: geometry.size.width/2)
+                            .titleStyle()
+                    }
+                    .navigationBarHidden(true)
                 }
-                NavigationLink(destination: PeopleListView()) {
-                    Text("Show People")
-                        .titleStyle()
-                }
-                .navigationBarHidden(true)
             }
+            .navigationViewStyle(StackNavigationViewStyle())
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
