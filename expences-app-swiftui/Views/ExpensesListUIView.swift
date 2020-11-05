@@ -24,6 +24,8 @@ struct ExpensesListUIView: View {
                 Section(header: Text(person.name)) {
                     ForEach(person.weeklyExpenses.indices) { dayIndex in
                         DayRow(dayIndex: dayIndex, personIndex: personIndex, positionIndex: 0, isEditMode: $isEditMode)
+                        let counter = person.weeklyExpenses[dayIndex].dailyExpenses.count
+                        showEmptyRow(counter: counter)
                         ForEach(person.weeklyExpenses[dayIndex].dailyExpenses.indices, id: \.hashValue) { positionIndex in
                             ExpenseRow(expense: person.weeklyExpenses[dayIndex].dailyExpenses[positionIndex])
                                 // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
@@ -51,6 +53,12 @@ struct ExpensesListUIView: View {
         .listStyle(GroupedListStyle())
         .navigationBarItems(trailing: EditButton())
         .environment(\.editMode, $isEditMode)
+    }
+    
+    private func showEmptyRow(counter: Int) -> EmptyRow? {
+        guard counter == 0 else {return nil}
+        
+        return EmptyRow()
     }
 }
 
@@ -84,5 +92,14 @@ struct DayRow: View {
                 ExpenseEditingView(viewModel: viewModel, personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expense: $expense, operation: .create)
             })
         }
+    }
+}
+
+struct EmptyRow: View {
+    var body: some View {
+        Text("Add some items here")
+            .foregroundColor(.gray)
+            .italic()
+            .padding(.leading)
     }
 }
