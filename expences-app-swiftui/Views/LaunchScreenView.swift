@@ -13,9 +13,11 @@ struct LaunchScreenView: View {
             VStack(spacing: 20) {
                 NavigationLink(destination: ExpensesListUIView()) {
                     Text("Show Expenses")
+                        .titleStyle()
                 }
                 NavigationLink(destination: PeopleListView()) {
                     Text("Show People")
+                        .titleStyle()
                 }
                 .navigationBarHidden(true)
             }
@@ -27,5 +29,21 @@ struct LaunchScreenView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         LaunchScreenView()
+    }
+}
+
+struct Title: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding(10)
+            .background(Color.blue)
+            .clipShape(Capsule())
+            .foregroundColor(.white)
+    }
+}
+
+extension View {
+    func titleStyle() -> some View {
+        self.modifier(Title())
     }
 }
