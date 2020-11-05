@@ -44,4 +44,8 @@ class ExpensesStore: ObservableObject, ExpensesStoreProtocol {
     func deletePerson(at offsets: IndexSet) {
         expenses.remove(atOffsets: offsets)
     }
+    
+    func updatePersonName(name: String, personIndex: Int) {
+        expenses[personIndex].name = name
+    }
 }

@@ -13,6 +13,9 @@ struct PeopleListView: View {
     
     @State private var isEditMode: EditMode = .inactive
     @State private var showModal: Bool = false
+    @State private var operation: OperationType = .create
+    @State private var personName: String = ""
+    @State private var personIndex: Int = 0
     
     var body: some View {
         List {
@@ -20,6 +23,17 @@ struct PeopleListView: View {
                 let personName = expensesStore.expenses[personIndex].name
                 NavigationLink(destination: PersonExpensesView(personIndex: personIndex, personName: personName)) {
                     Text(expensesStore.expenses[personIndex].name)
+                }
+                // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
+                .contentShape(Rectangle())
+                // This check allows the NavigationLink to work when edit mode is inactive
+                .allowsHitTesting(isEditMode == .inactive ? false : true)
+                // Line below makes tap gesture possible for each row in list
+                .onTapGesture() {
+                    self.personName = personName
+                    self.personIndex = personIndex
+                    operation = .update
+                    showModal.toggle()
                 }
             }
             .onDelete(perform: expensesStore.deletePerson)
@@ -29,7 +43,12 @@ struct PeopleListView: View {
             trailing:
                 HStack {
                     if isEditMode == .active {
-                        Button(action: { showModal = true }, label: {
+                        Button(action: {
+                            personName = ""
+                            operation = .create
+                            showModal = true
+                            
+                        }, label: {
                             Image(systemName: "plus")
                         })
                     }
@@ -39,7 +58,7 @@ struct PeopleListView: View {
         .environment(\.editMode, $isEditMode)
         .sheet(isPresented: $showModal, content: {
             let viewModel = NewPersonViewModel(expensesStore: expensesStore)
-            NewPersonView(viewModel: viewModel, isPresented: $showModal)
+            NewPersonView(viewModel: viewModel, isPresented: $showModal, operation: $operation, personName: $personName, personIndex: $personIndex)
         })
     }
 }

@@ -12,6 +12,9 @@ struct NewPersonView: View {
     @ObservedObject var viewModel: NewPersonViewModel
     
     @Binding var isPresented: Bool
+    @Binding var operation: OperationType
+    @Binding var personName: String
+    @Binding var personIndex: Int
     
     var body: some View {
         NavigationView {
@@ -20,7 +23,7 @@ struct NewPersonView: View {
                     TextField("Enter name here", text: $viewModel.personName)
                 }
             }
-            .navigationBarTitle("Create new person record", displayMode: .inline)
+            .navigationBarTitle(viewModel.navigationText, displayMode: .inline)
             .navigationBarItems(
                 leading:
                     Button(action: {isPresented.toggle()}) {
@@ -28,12 +31,16 @@ struct NewPersonView: View {
                     },
                 trailing:
                     Button(action: {
-                            viewModel.createPerson()
+                            viewModel.handlePerson(operation: operation, personIndex: personIndex)
                             isPresented.toggle()}) {
-                        Text("Create")
+                        Text(viewModel.actionButtonText)
                     }
                     .disabled(viewModel.personName.isEmpty)
             )
+            .onAppear(perform: {
+                viewModel.checkOperationType(operation: operation)
+                viewModel.setPersonNameInTextField(personName: personName)
+            })
         }
     }
 }
@@ -41,6 +48,6 @@ struct NewPersonView: View {
 struct NewPersonView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = NewPersonViewModel(expensesStore: ExpensesStore())
-        NewPersonView(viewModel: viewModel, isPresented: .constant(true))
+        NewPersonView(viewModel: viewModel, isPresented: .constant(true), operation: .constant(.create), personName: .constant(""), personIndex: .constant(0))
     }
 }
