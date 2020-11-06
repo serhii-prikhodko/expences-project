@@ -28,6 +28,7 @@
 		1B89CF392540796700FF30AF /* OperationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B89CF382540796700FF30AF /* OperationType.swift */; };
 		1B970CBD2551559D00A655BC /* NewPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B970CBC2551559D00A655BC /* NewPersonView.swift */; };
 		1B970CC52551998A00A655BC /* NewPersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B970CC42551998A00A655BC /* NewPersonViewModel.swift */; };
+		1BAC207B255555EF009E69FE /*  ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC207A255555EF009E69FE /*  ColorScheme.swift */; };
 		1BACDF9F254712C400B8B5B4 /* ExpenseEditingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BACDF9E254712C400B8B5B4 /* ExpenseEditingViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		1B89CF382540796700FF30AF /* OperationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationType.swift; sourceTree = "<group>"; };
 		1B970CBC2551559D00A655BC /* NewPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPersonView.swift; sourceTree = "<group>"; };
 		1B970CC42551998A00A655BC /* NewPersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPersonViewModel.swift; sourceTree = "<group>"; };
+		1BAC207A255555EF009E69FE /*  ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " ColorScheme.swift"; sourceTree = "<group>"; };
 		1BACDF9E254712C400B8B5B4 /* ExpenseEditingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseEditingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,6 +136,7 @@
 				1B6AC8E7252F3FDA00486F74 /* Mock Data */,
 				1B6AC88F252F1A4B00486F74 /* expences_app_swiftuiApp.swift */,
 				1B6AC893252F1A4C00486F74 /* Assets.xcassets */,
+				1BAC207A255555EF009E69FE /*  ColorScheme.swift */,
 				1B6AC898252F1A4C00486F74 /* Info.plist */,
 				1B6AC895252F1A4C00486F74 /* Preview Content */,
 			);
@@ -363,6 +366,7 @@
 				1B7ECAC925502ECC00216371 /* PeopleListView.swift in Sources */,
 				1B6AC8F5252F3FF700486F74 /* Expense.swift in Sources */,
 				1B6AC8F3252F3FF700486F74 /* ExpensesByPerson.swift in Sources */,
+				1BAC207B255555EF009E69FE /*  ColorScheme.swift in Sources */,
 				1B3399D72530440F00CA07CA /* ExpenseRow.swift in Sources */,
 				1B6AC890252F1A4B00486F74 /* expences_app_swiftuiApp.swift in Sources */,
 			);

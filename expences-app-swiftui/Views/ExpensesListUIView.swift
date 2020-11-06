@@ -82,11 +82,12 @@ struct DayRow: View {
     var body: some View {
         HStack {
             Text("Day \(dayIndex + 1)")
-                .foregroundColor(Color.blue)
+                .foregroundColor(Color.dayCellTextColor)
             Spacer()
             Button(action: { expense = Expense(name: "", amount: 0) }) {
                 Image(systemName: "plus")
             }
+            .foregroundColor(Color.dayCellTextColor)
             .sheet(item: $expense, content: { expense in
                 let viewModel = ExpenseEditingViewModel(expensesStore: expensesStore)
                 ExpenseEditingView(viewModel: viewModel, personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expense: $expense, operation: .create)

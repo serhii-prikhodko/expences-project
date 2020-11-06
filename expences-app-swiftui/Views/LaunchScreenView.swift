@@ -40,9 +40,9 @@ struct Title: ViewModifier {
     func body(content: Content) -> some View {
         content
             .padding(10)
-            .background(Color.blue)
+            .background(Color.buttonBackgroundColor)
             .clipShape(Capsule())
-            .foregroundColor(.white)
+            .foregroundColor(Color.textColor)
     }
 }
 
