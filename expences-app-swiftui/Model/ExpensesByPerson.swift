@@ -10,7 +10,7 @@ import Foundation
 public struct ExpensesByPerson: Codable,Identifiable {
     
     public let id = UUID()
-    public let name: String
+    public var name: String
     public var weeklyExpenses: [DailyExpenses]
     
     enum CodingKeys: String, CodingKey {

@@ -24,7 +24,11 @@
 		1B6AC8F5252F3FF700486F74 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6AC8F1252F3FF600486F74 /* Expense.swift */; };
 		1B6AC8FB252F401B00486F74 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6AC8FA252F401B00486F74 /* JSONParser.swift */; };
 		1B7ECAC925502ECC00216371 /* PeopleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ECAC825502ECC00216371 /* PeopleListView.swift */; };
+		1B7ECAD725503F1400216371 /* PersonExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7ECAD625503F1400216371 /* PersonExpensesView.swift */; };
 		1B89CF392540796700FF30AF /* OperationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B89CF382540796700FF30AF /* OperationType.swift */; };
+		1B970CBD2551559D00A655BC /* NewPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B970CBC2551559D00A655BC /* NewPersonView.swift */; };
+		1B970CC52551998A00A655BC /* NewPersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B970CC42551998A00A655BC /* NewPersonViewModel.swift */; };
+		1BAC207B255555EF009E69FE /*  ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC207A255555EF009E69FE /*  ColorScheme.swift */; };
 		1BACDF9F254712C400B8B5B4 /* ExpenseEditingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BACDF9E254712C400B8B5B4 /* ExpenseEditingViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,7 +73,11 @@
 		1B6AC8F1252F3FF600486F74 /* Expense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		1B6AC8FA252F401B00486F74 /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		1B7ECAC825502ECC00216371 /* PeopleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListView.swift; sourceTree = "<group>"; };
+		1B7ECAD625503F1400216371 /* PersonExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonExpensesView.swift; sourceTree = "<group>"; };
 		1B89CF382540796700FF30AF /* OperationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationType.swift; sourceTree = "<group>"; };
+		1B970CBC2551559D00A655BC /* NewPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPersonView.swift; sourceTree = "<group>"; };
+		1B970CC42551998A00A655BC /* NewPersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPersonViewModel.swift; sourceTree = "<group>"; };
+		1BAC207A255555EF009E69FE /*  ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " ColorScheme.swift"; sourceTree = "<group>"; };
 		1BACDF9E254712C400B8B5B4 /* ExpenseEditingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseEditingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,6 +136,7 @@
 				1B6AC8E7252F3FDA00486F74 /* Mock Data */,
 				1B6AC88F252F1A4B00486F74 /* expences_app_swiftuiApp.swift */,
 				1B6AC893252F1A4C00486F74 /* Assets.xcassets */,
+				1BAC207A255555EF009E69FE /*  ColorScheme.swift */,
 				1B6AC898252F1A4C00486F74 /* Info.plist */,
 				1B6AC895252F1A4C00486F74 /* Preview Content */,
 			);
@@ -165,7 +174,9 @@
 			children = (
 				1B6AC891252F1A4B00486F74 /* LaunchScreenView.swift */,
 				1B6AC8D6252F323200486F74 /* ExpensesListUIView.swift */,
+				1B970CBC2551559D00A655BC /* NewPersonView.swift */,
 				1B7ECAC825502ECC00216371 /* PeopleListView.swift */,
+				1B7ECAD625503F1400216371 /* PersonExpensesView.swift */,
 				1B3399D62530440F00CA07CA /* ExpenseRow.swift */,
 				1B5C7D3B25398A4700EBDACE /* ExpenseEditingView.swift */,
 			);
@@ -205,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				1BACDF9E254712C400B8B5B4 /* ExpenseEditingViewModel.swift */,
+				1B970CC42551998A00A655BC /* NewPersonViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -346,11 +358,15 @@
 				1B6AC8FB252F401B00486F74 /* JSONParser.swift in Sources */,
 				1B6AC892252F1A4B00486F74 /* LaunchScreenView.swift in Sources */,
 				1BACDF9F254712C400B8B5B4 /* ExpenseEditingViewModel.swift in Sources */,
+				1B970CC52551998A00A655BC /* NewPersonViewModel.swift in Sources */,
 				1B1EB0B4253DDFAE00A894D7 /* ExpensesStore.swift in Sources */,
 				1B6AC8D7252F323200486F74 /* ExpensesListUIView.swift in Sources */,
+				1B7ECAD725503F1400216371 /* PersonExpensesView.swift in Sources */,
+				1B970CBD2551559D00A655BC /* NewPersonView.swift in Sources */,
 				1B7ECAC925502ECC00216371 /* PeopleListView.swift in Sources */,
 				1B6AC8F5252F3FF700486F74 /* Expense.swift in Sources */,
 				1B6AC8F3252F3FF700486F74 /* ExpensesByPerson.swift in Sources */,
+				1BAC207B255555EF009E69FE /*  ColorScheme.swift in Sources */,
 				1B3399D72530440F00CA07CA /* ExpenseRow.swift in Sources */,
 				1B6AC890252F1A4B00486F74 /* expences_app_swiftuiApp.swift in Sources */,
 			);

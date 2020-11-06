@@ -34,4 +34,18 @@ class ExpensesStore: ObservableObject, ExpensesStoreProtocol {
     func deleteExpense(personIndex: Int, dayIndex: Int, at offsets: IndexSet) {
         expenses[personIndex].weeklyExpenses[dayIndex].dailyExpenses.remove(atOffsets: offsets)
     }
+    
+    func addPerson(name: String) {
+        let weeklyExpenses = [DailyExpenses.emptyDailyExpenses(), DailyExpenses.emptyDailyExpenses(), DailyExpenses.emptyDailyExpenses()]
+        let expensesByPerson = ExpensesByPerson(name: name, weeklyExpenses: weeklyExpenses)
+        expenses.append(expensesByPerson)
+    }
+    
+    func deletePerson(at offsets: IndexSet) {
+        expenses.remove(atOffsets: offsets)
+    }
+    
+    func updatePersonName(name: String, personIndex: Int) {
+        expenses[personIndex].name = name
+    }
 }

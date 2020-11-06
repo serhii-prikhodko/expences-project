@@ -162,14 +162,58 @@ class expences_app_swiftuiUITests: XCTestCase {
         }
     }
     
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
+    func testGoToPeopleList() throws {
+        // Find button by name
+        let button = app.buttons["Show People"]
+        
+        XCTContext.runActivity(named: "Open launch screen") { _ in
+            XCTAssertTrue(button.waitForExistence(timeout: 5.0))
+            
+            // Open expenses screen
+            button.tap()
+            
+            // Check screen navigation title text
+            XCTAssertTrue(app.navigationBars.staticTexts["People"].waitForExistence(timeout: 5.0), "Can't find text 'Expenses' on the navigation bar")
         }
     }
+// THIS TEST IS COMMENTED TILL IT IS NOT FIXED
+//    func testCreateNewPerson() throws {
+//        // Find button by name
+//        let button = app.buttons["Show People"]
+//
+//        XCTContext.runActivity(named: "Open launch screen") { _ in
+//            XCTAssertTrue(button.waitForExistence(timeout: 5.0))
+//
+//            // Open expenses screen
+//            button.tap()
+//
+//            // Find edit button and tap on it
+//            let editButton = app.navigationBars.buttons["Edit"]
+//            editButton.tap()
+//
+//            // Find plus button and tap on it
+//            let plusButton = app.navigationBars.buttons["plus"]
+//            plusButton.tap()
+//
+//            // Find text field on the screen
+//            let nameTextField = app.textFields["Enter name here"]
+//            nameTextField.tap()
+//
+//            // Enter name for future expense
+//            nameTextField.typeText("New test person")
+//
+//            // Save new expense
+//            let createButton = app.buttons["Create"]
+//            createButton.tap()
+//
+//            // Find done button and tap on it
+//            let doneButton = app.navigationBars.buttons["Done"]
+//            doneButton.tap()
+//
+//            // Check created expense in list
+//            XCTAssertTrue(app.cells.staticTexts["New test person"].waitForExistence(timeout: 5.0), "Can't find new person 'New test person' on the screen")
+//        }
+//    }
 }
 
 extension XCUIElement {
