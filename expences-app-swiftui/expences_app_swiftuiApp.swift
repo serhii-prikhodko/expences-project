@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct expences_app_swiftuiApp: App {
+    
+    let persistenceController = PersistenceController.shared
+    
     var expensesStore = ExpensesStore()
     var body: some Scene {
         WindowGroup {
