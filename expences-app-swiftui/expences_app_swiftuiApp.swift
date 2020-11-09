@@ -15,7 +15,7 @@ struct expences_app_swiftuiApp: App {
     var expensesStore = ExpensesStore()
     var body: some Scene {
         WindowGroup {
-            LaunchScreenView().environmentObject(expensesStore)
+            LaunchScreenView().environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
