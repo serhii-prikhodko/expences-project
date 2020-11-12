@@ -6,16 +6,27 @@
 //
 
 import SwiftUI
+import CoreData
 
 @main
 struct expences_app_swiftuiApp: App {
     
-    let persistenceController = PersistenceController.shared
+    let persistenceManager: PersistenceController
+    @StateObject var expensesStore: ExpensesStore
     
-    var expensesStore = ExpensesStore()
+    init() {
+        let manager = PersistenceController()
+        self.persistenceManager = manager
+        
+        let managedObjectContext = manager.container.viewContext
+        let storage = ExpensesStore(managedObjectContext: managedObjectContext)
+        self._expensesStore = StateObject(wrappedValue: storage)
+    }
+    
     var body: some Scene {
         WindowGroup {
-            LaunchScreenView().environment(\.managedObjectContext, persistenceController.container.viewContext)
+            LaunchScreenView(expensesStore: expensesStore)
+                .environmentObject(expensesStore)
         }
     }
 }

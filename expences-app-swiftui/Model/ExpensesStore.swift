@@ -6,46 +6,107 @@
 //
 
 import Foundation
+import CoreData
 
-protocol ExpensesStoreProtocol {
+class ExpensesStore: NSObject, ObservableObject {
     
-    static func loadExpenses() -> [ExpensesByPerson]
-}
-
-class ExpensesStore: ObservableObject, ExpensesStoreProtocol {
+    @Published var expenses: [ExpensesByPersonItem] = []
     
-    @Published var expenses = loadExpenses()
+    private let expensesController: NSFetchedResultsController<ExpensesByPersonItem>
     
-    static func loadExpenses() -> [ExpensesByPerson] {
-        let data = JSONParser.parse(from: "expenses")
-        let expensesData = data.expenses
+    init(managedObjectContext: NSManagedObjectContext) {
+        expensesController = NSFetchedResultsController(fetchRequest: ExpensesByPersonItem.expensesFetchRequest,
+                                                        managedObjectContext: managedObjectContext,
+                                                        sectionNameKeyPath: nil, cacheName: nil)
         
-        return expensesData
+        super.init()
+        
+        expensesController.delegate = self
+        
+        do {
+            try expensesController.performFetch()
+            expenses = expensesController.fetchedObjects ?? []
+        } catch {
+            print("failed to fetch items!")
+        }
     }
     
-    func addExpense(personIndex: Int, dayIndex: Int, expense: Expense) {
-        expenses[personIndex].weeklyExpenses[dayIndex].dailyExpenses.append(expense)
+    func addExpense(personIndex: Int, dayIndex: Int, name: String, amount: Double) {
+        let expense = ExpenseItem(context: expensesController.managedObjectContext)
+        expense.name = name
+        expense.amount = amount
+        expenses[personIndex].weeklyExpenses?[dayIndex].dailyExpenses?.append(expense)
+        
+        saveContext()
     }
     
-    func updateExpense(personIndex: Int, dayIndex: Int, positionIndex: Int, expense: Expense) {
-        expenses[personIndex].weeklyExpenses[dayIndex].dailyExpenses[positionIndex] = expense
+    func updateExpense(personIndex: Int, dayIndex: Int, positionIndex: Int, name: String, amount: Double) {
+        let expense = ExpenseItem(context: expensesController.managedObjectContext)
+        expense.name = name
+        expense.amount = amount
+        expenses[personIndex].weeklyExpenses?[dayIndex].dailyExpenses?[positionIndex] = expense
+        
+        saveContext()
     }
     
     func deleteExpense(personIndex: Int, dayIndex: Int, at offsets: IndexSet) {
-        expenses[personIndex].weeklyExpenses[dayIndex].dailyExpenses.remove(atOffsets: offsets)
+        
+        for index in offsets {
+            guard let expense = expenses[personIndex].weeklyExpenses?[dayIndex].dailyExpenses?[index] else { return }
+            expensesController.managedObjectContext.delete(expense)
+        }
+        
+        saveContext()
     }
     
     func addPerson(name: String) {
-        let weeklyExpenses = [DailyExpenses.emptyDailyExpenses(), DailyExpenses.emptyDailyExpenses(), DailyExpenses.emptyDailyExpenses()]
-        let expensesByPerson = ExpensesByPerson(name: name, weeklyExpenses: weeklyExpenses)
-        expenses.append(expensesByPerson)
+        let person = ExpensesByPersonItem(context: expensesController.managedObjectContext)
+        person.name = name
+        
+        let dayOne = DailyExpensesItem(context: expensesController.managedObjectContext)
+        let dayTwo = DailyExpensesItem(context: expensesController.managedObjectContext)
+        let dayThree = DailyExpensesItem(context: expensesController.managedObjectContext)
+        person.dailyExpenses = [dayOne, dayTwo, dayThree]
+        
+        saveContext()
     }
     
     func deletePerson(at offsets: IndexSet) {
-        expenses.remove(atOffsets: offsets)
+        for index in offsets {
+            let person = expenses[index]
+            expensesController.managedObjectContext.delete(person)
+        }
+        
+        saveContext()
     }
     
     func updatePersonName(name: String, personIndex: Int) {
         expenses[personIndex].name = name
+    }
+    
+    private func saveContext() {
+        do {
+            try expensesController.managedObjectContext.save()
+        } catch {
+            print("Error saving managed object context: \(error)")
+        }
+    }
+}
+
+extension ExpensesByPersonItem {
+    static var expensesFetchRequest: NSFetchRequest<ExpensesByPersonItem> {
+        let request: NSFetchRequest<ExpensesByPersonItem> = ExpensesByPersonItem.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+        
+        return request
+    }
+}
+
+extension ExpensesStore: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        guard let expenses = controller.fetchedObjects as? [ExpensesByPersonItem]
+        else { return }
+        
+        self.expenses = expenses
     }
 }

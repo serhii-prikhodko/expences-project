@@ -45,9 +45,9 @@ struct NewPersonView: View {
     }
 }
 
-struct NewPersonView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = NewPersonViewModel(expensesStore: ExpensesStore())
-        NewPersonView(viewModel: viewModel, isPresented: .constant(true), operation: .constant(.create), personName: .constant(""), personIndex: .constant(0))
-    }
-}
+//struct NewPersonView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let viewModel = NewPersonViewModel(expensesStore: ExpensesStore())
+//        NewPersonView(viewModel: viewModel, isPresented: .constant(true), operation: .constant(.create), personName: .constant(""), personIndex: .constant(0))
+//    }
+//}

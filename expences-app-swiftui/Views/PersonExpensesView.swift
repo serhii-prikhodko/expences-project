@@ -12,40 +12,47 @@ struct PersonExpensesView: View {
     @EnvironmentObject var expensesStore: ExpensesStore
     
     @State private var isEditMode: EditMode = .inactive
-    @State private var expense: Expense? = nil
+    //@State private var expense: Expense? = nil
     @State var personIndex: Int
     @State private var dayIndex: Int = 0
     @State private var positionIndex: Int = 0
+    @State private var expenseName: String?
+    @State private var expenseAmount: Double?
+    @State private var showModal: Bool = false
     
     var personName: String
     
     var body: some View {
         List {
-            ForEach(expensesStore.expenses[personIndex].weeklyExpenses.indices) { dayIndex in
-                let dailyExpenses = expensesStore.expenses[personIndex].weeklyExpenses[dayIndex]
-                DayRow(dayIndex: dayIndex, personIndex: personIndex, positionIndex: 0, isEditMode: $isEditMode)
-                let counter = dailyExpenses.dailyExpenses.count
-                showEmptyRow(counter: counter)
-                ForEach(dailyExpenses.dailyExpenses.indices, id: \.hashValue) { positionIndex in
-                    ExpenseRow(expense: dailyExpenses.dailyExpenses[positionIndex])
-                        // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
-                        .contentShape(Rectangle())
-                        // Line below makes tap gesture possible for each row in list
-                        .onTapGesture {
-                            self.positionIndex = positionIndex
-                            self.dayIndex = dayIndex
-                            expense = dailyExpenses.dailyExpenses[positionIndex]
+            if let dayIndicies = expensesStore.expenses[personIndex].weeklyExpenses?.indices {
+                ForEach(dayIndicies) { dayIndex in
+                    if let dailyExpenses = expensesStore.expenses[personIndex].weeklyExpenses?[dayIndex].dailyExpenses {
+                        DayRow(dayIndex: dayIndex, personIndex: personIndex, positionIndex: 0, isEditMode: $isEditMode)
+                        showEmptyRow(counter: dailyExpenses.count)
+                        ForEach(dailyExpenses.indices, id: \.hashValue) { positionIndex in
+                            ExpenseRow(expense: dailyExpenses[positionIndex])
+                                // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
+                                .contentShape(Rectangle())
+                                // Line below makes tap gesture possible for each row in list
+                                .onTapGesture {
+                                    self.positionIndex = positionIndex
+                                    self.dayIndex = dayIndex
+                                    expenseName = dailyExpenses[positionIndex].name
+                                    expenseAmount = dailyExpenses[positionIndex].amount
+                                    showModal = true
+                                }
                         }
-                }
-                .onDelete { (indexSet) in
-                    expensesStore.deleteExpense(personIndex: personIndex, dayIndex: dayIndex, at: indexSet)
+                        .onDelete { (indexSet) in
+                            expensesStore.deleteExpense(personIndex: personIndex, dayIndex: dayIndex, at: indexSet)
+                        }
+                    }
                 }
             }
         }
-        .sheet(item: $expense, content: { expense in
+        .sheet(isPresented: $showModal) {
             let viewModel = ExpenseEditingViewModel(expensesStore: expensesStore)
-            ExpenseEditingView(viewModel: viewModel, personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expense: $expense, operation: .update)
-        })
+            ExpenseEditingView(viewModel: viewModel, personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expenseName: $expenseName, expenseAmount: $expenseAmount, showModal: $showModal, operation: .update)
+        }
         .navigationBarTitle(personName, displayMode: .inline)
         .listStyle(GroupedListStyle())
         .navigationBarItems(trailing: EditButton())

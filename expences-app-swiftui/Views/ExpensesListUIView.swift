@@ -12,43 +12,50 @@ struct ExpensesListUIView: View {
     @EnvironmentObject var expensesStore: ExpensesStore
     
     @State private var isEditMode: EditMode = .inactive
-    @State private var expense: Expense? = nil
     @State private var positionIndex: Int = 0
     @State private var dayIndex: Int = 0
     @State private var personIndex: Int = 0
+    @State private var expenseName: String?
+    @State private var expenseAmount: Double?
+    @State private var showModal: Bool = false
     
     var body: some View {
         List {
             ForEach(expensesStore.expenses.indices) { personIndex in
-                let person = expensesStore.expenses[personIndex]
-                Section(header: Text(person.name)) {
-                    ForEach(person.weeklyExpenses.indices) { dayIndex in
-                        DayRow(dayIndex: dayIndex, personIndex: personIndex, positionIndex: 0, isEditMode: $isEditMode)
-                        let counter = person.weeklyExpenses[dayIndex].dailyExpenses.count
-                        showEmptyRow(counter: counter)
-                        ForEach(person.weeklyExpenses[dayIndex].dailyExpenses.indices, id: \.hashValue) { positionIndex in
-                            ExpenseRow(expense: person.weeklyExpenses[dayIndex].dailyExpenses[positionIndex])
-                                // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
-                                .contentShape(Rectangle())
-                                // Line below makes tap gesture possible for each row in list
-                                .onTapGesture {
-                                    self.positionIndex = positionIndex
-                                    self.dayIndex = dayIndex
-                                    self.personIndex = personIndex
-                                    expense = person.weeklyExpenses[dayIndex].dailyExpenses[positionIndex]
+                if let name = expensesStore.expenses[personIndex].name, let weeklyExpenses = expensesStore.expenses[personIndex].weeklyExpenses {
+                    Section(header: Text(name)) {
+                        ForEach(weeklyExpenses.indices) { dayIndex in
+                            if let dailyExpenses = weeklyExpenses[dayIndex].dailyExpenses {
+                                DayRow(dayIndex: dayIndex, personIndex: personIndex, positionIndex: 0, isEditMode: $isEditMode)
+                                let counter = dailyExpenses.count
+                                showEmptyRow(counter: counter)
+                                ForEach(dailyExpenses.indices, id: \.hashValue) { positionIndex in
+                                    ExpenseRow(expense: dailyExpenses[positionIndex])
+                                        // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
+                                        .contentShape(Rectangle())
+                                        // Line below makes tap gesture possible for each row in list
+                                        .onTapGesture {
+                                            self.positionIndex = positionIndex
+                                            self.dayIndex = dayIndex
+                                            self.personIndex = personIndex
+                                            expenseName = dailyExpenses[positionIndex].name
+                                            expenseAmount = dailyExpenses[positionIndex].amount
+                                            showModal = true
+                                        }
                                 }
-                        }
-                        .onDelete { (indexSet) in
-                            expensesStore.deleteExpense(personIndex: personIndex, dayIndex: dayIndex, at: indexSet)
+                                .onDelete { (indexSet) in
+                                    expensesStore.deleteExpense(personIndex: personIndex, dayIndex: dayIndex, at: indexSet)
+                                }
+                            }
                         }
                     }
                 }
             }
         }
-        .sheet(item: $expense, content: { expense in
+        .sheet(isPresented: $showModal) {
             let viewModel = ExpenseEditingViewModel(expensesStore: expensesStore)
-            ExpenseEditingView(viewModel: viewModel, personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expense: $expense, operation: .update)
-        })
+            ExpenseEditingView(viewModel: viewModel, personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expenseName: $expenseName, expenseAmount: $expenseAmount, showModal: $showModal, operation: .update)
+        }
         .navigationBarTitle("Expenses", displayMode: .inline)
         .listStyle(GroupedListStyle())
         .navigationBarItems(trailing: EditButton())
@@ -62,18 +69,20 @@ struct ExpensesListUIView: View {
     }
 }
 
-struct ExpensesUIView_Previews: PreviewProvider {
-    static let expensesStore = ExpensesStore()
-    static var previews: some View {
-        ExpensesListUIView().environmentObject(expensesStore)
-    }
-}
+//struct ExpensesUIView_Previews: PreviewProvider {
+//    
+//    static var previews: some View {
+//        ExpensesListUIView()
+//    }
+//}
 
 struct DayRow: View {
     @State var dayIndex: Int
     @State var personIndex: Int
     @State var positionIndex: Int
-    @State private var expense: Expense? = nil
+    @State private var showModal: Bool = false
+    @State private var expenseName: String?
+    @State private var expenseAmount: Double?
     
     @Binding var isEditMode: EditMode
     
@@ -84,14 +93,14 @@ struct DayRow: View {
             Text("Day \(dayIndex + 1)")
                 .foregroundColor(Color.dayCellTextColor)
             Spacer()
-            Button(action: { expense = Expense(name: "", amount: 0) }) {
+            Button(action: { showModal = true }) {
                 Image(systemName: "plus")
             }
             .foregroundColor(Color.dayCellTextColor)
-            .sheet(item: $expense, content: { expense in
+            .sheet(isPresented: $showModal){
                 let viewModel = ExpenseEditingViewModel(expensesStore: expensesStore)
-                ExpenseEditingView(viewModel: viewModel, personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expense: $expense, operation: .create)
-            })
+                ExpenseEditingView(viewModel: viewModel, personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expenseName: $expenseName, expenseAmount: $expenseAmount, showModal: $showModal, operation: .create)
+            }
         }
     }
 }

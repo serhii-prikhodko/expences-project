@@ -9,21 +9,21 @@ import SwiftUI
 
 struct ExpenseRow: View {
     
-    var expense: Expense
+    var expense: ExpenseItem
     
     var body: some View {
         HStack {
-            Text(expense.name)
-                .fontWeight(.bold)
-                .padding(.leading)
+            expense.name.map(Text.init)
+//                .fontWeight(.bold)
+//                .padding(.leading)
             Spacer()
             Text("$ \(expense.amount, specifier: "%.2f")")
         }
     }
 }
 
-struct ExpenseRow_Previews: PreviewProvider {
-    static var previews: some View {
-        ExpenseRow(expense: Expense(name: "Apples", amount: 9.00))
-    }
-}
+//struct ExpenseRow_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ExpenseRow(expense: ExpenseItem(name: "Apples", amount: 9.00))
+//    }
+//}

@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct LaunchScreenView: View {
+    
+    @ObservedObject var expensesStore: ExpensesStore
+    
     var body: some View {
         GeometryReader { geometry in
             NavigationView {
@@ -30,11 +33,11 @@ struct LaunchScreenView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        LaunchScreenView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LaunchScreenView(expensesStore: ExpensesStore())
+//    }
+//}
 
 struct Title: ViewModifier {
     func body(content: Content) -> some View {

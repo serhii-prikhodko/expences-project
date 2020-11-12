@@ -14,7 +14,9 @@ struct ExpenseEditingView: View {
     @Binding var personIndex: Int
     @Binding var dayIndex: Int
     @Binding var positionIndex: Int
-    @Binding var expense: Expense?
+    @Binding var expenseName: String?
+    @Binding var expenseAmount: Double?
+    @Binding var showModal: Bool
     
     let operation: OperationType
     let alertTitle: String = "Information"
@@ -32,7 +34,7 @@ struct ExpenseEditingView: View {
                 }
             }
             .onAppear(perform: {
-                viewModel.checkTranferedExpense(expense: expense)
+                viewModel.checkTranferedExpense(name: expenseName, amount: expenseAmount)
                 viewModel.checkOperationType(operation: operation)
             })
             .navigationBarTitle(viewModel.navigationText, displayMode: .inline)
@@ -54,15 +56,14 @@ struct ExpenseEditingView: View {
             )
         }
     }
-    
     private func dismissView() {
-        expense = nil
+        showModal.toggle()
     }
 }
 
-struct AddExpense_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = ExpenseEditingViewModel(expensesStore: ExpensesStore())
-        ExpenseEditingView(viewModel: viewModel, personIndex: .constant(0), dayIndex: .constant(0), positionIndex: .constant(0), expense: .constant(Expense(name: "Juice", amount: 2.32)), operation: .create)
-    }
-}
+//struct AddExpense_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let viewModel = ExpenseEditingViewModel(expensesStore: ExpensesStore())
+//        ExpenseEditingView(viewModel: viewModel, personIndex: .constant(0), dayIndex: .constant(0), positionIndex: .constant(0), operation: .create)
+//    }
+//}

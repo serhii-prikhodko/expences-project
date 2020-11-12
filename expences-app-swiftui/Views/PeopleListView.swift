@@ -20,20 +20,21 @@ struct PeopleListView: View {
     var body: some View {
         List {
             ForEach(expensesStore.expenses.indices, id: \.hashValue) { personIndex in
-                let personName = expensesStore.expenses[personIndex].name
-                NavigationLink(destination: PersonExpensesView(personIndex: personIndex, personName: personName)) {
-                    Text(expensesStore.expenses[personIndex].name)
-                }
-                // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
-                .contentShape(Rectangle())
-                // This check allows the NavigationLink to work when edit mode is inactive
-                .allowsHitTesting(isEditMode == .inactive ? false : true)
-                // Line below makes tap gesture possible for each row in list
-                .onTapGesture() {
-                    self.personName = personName
-                    self.personIndex = personIndex
-                    operation = .update
-                    showModal.toggle()
+                if let personName = expensesStore.expenses[personIndex].name {
+                    NavigationLink(destination: PersonExpensesView(personIndex: personIndex, personName: personName)) {
+                        Text(personName)
+                    }
+                    // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
+                    .contentShape(Rectangle())
+                    // This check allows the NavigationLink to work when edit mode is inactive
+                    .allowsHitTesting(isEditMode == .inactive ? false : true)
+                    // Line below makes tap gesture possible for each row in list
+                    .onTapGesture() {
+                        self.personName = personName
+                        self.personIndex = personIndex
+                        operation = .update
+                        showModal.toggle()
+                    }
                 }
             }
             .onDelete(perform: expensesStore.deletePerson)
