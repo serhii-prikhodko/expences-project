@@ -64,9 +64,9 @@ class ExpensesStore: NSObject, ObservableObject {
         person.name = name
         
         let dayOne = DailyExpensesItem(context: expensesController.managedObjectContext)
-        let dayTwo = DailyExpensesItem(context: expensesController.managedObjectContext)
-        let dayThree = DailyExpensesItem(context: expensesController.managedObjectContext)
-        person.dailyExpenses = [dayOne, dayTwo, dayThree]
+        dayOne.dailyExpenses = []
+        
+        person.weeklyExpenses = [dayOne]
         
         saveContext()
     }
