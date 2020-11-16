@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="DailyExpensesItem" representedClassName="DailyExpensesItem" syncable="YES" codeGenerationType="class">
-        <attribute name="dailyExpenses" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureCoding" customClassName="[ExpenseItem]"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <relationship name="expense" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExpenseItem" inverseName="dailyExpenses" inverseEntity="ExpenseItem"/>
-        <relationship name="expensesByPerson" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExpensesByPersonItem" inverseName="dailyExpenses" inverseEntity="ExpensesByPersonItem"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExpenseItem" inverseName="dailyExpenses" inverseEntity="ExpenseItem"/>
+        <relationship name="expensesByPerson" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExpensesByPersonItem" inverseName="weeklyExpenses" inverseEntity="ExpensesByPersonItem"/>
     </entity>
     <entity name="ExpenseItem" representedClassName="ExpenseItem" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="dailyExpenses" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DailyExpensesItem" inverseName="expense" inverseEntity="DailyExpensesItem"/>
+        <relationship name="dailyExpenses" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DailyExpensesItem" inverseName="expenses" inverseEntity="DailyExpensesItem"/>
     </entity>
     <entity name="ExpensesByPersonItem" representedClassName="ExpensesByPersonItem" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="weeklyExpenses" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureCoding" customClassName="[DailyExpensesItem]"/>
-        <relationship name="dailyExpenses" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DailyExpensesItem" inverseName="expensesByPerson" inverseEntity="DailyExpensesItem"/>
+        <relationship name="weeklyExpenses" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DailyExpensesItem" inverseName="expensesByPerson" inverseEntity="DailyExpensesItem"/>
     </entity>
     <elements>
-        <element name="DailyExpensesItem" positionX="-564.6015625" positionY="-283.3359375" width="128" height="103"/>
+        <element name="DailyExpensesItem" positionX="-564.6015625" positionY="-283.3359375" width="128" height="88"/>
         <element name="ExpenseItem" positionX="-212.265625" positionY="0.82421875" width="128" height="103"/>
-        <element name="ExpensesByPersonItem" positionX="-791.8359375" positionY="-437.40234375" width="128" height="103"/>
+        <element name="ExpensesByPersonItem" positionX="-791.8359375" positionY="-437.40234375" width="128" height="88"/>
     </elements>
 </model>

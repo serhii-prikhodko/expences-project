@@ -64,9 +64,9 @@ class ExpensesStore: NSObject, ObservableObject {
         person.name = name
         
         let dayOne = DailyExpensesItem(context: expensesController.managedObjectContext)
-        dayOne.dailyExpenses = []
+        dayOne.expenses = []
         
-        person.weeklyExpenses = [dayOne]
+        person.weeklyExpenses = NSSet(array: [dayOne])
         
         saveContext()
     }
@@ -82,6 +82,8 @@ class ExpensesStore: NSObject, ObservableObject {
     
     func updatePersonName(name: String, personIndex: Int) {
         expenses[personIndex].name = name
+        
+        saveContext()
     }
     
     private func saveContext() {
