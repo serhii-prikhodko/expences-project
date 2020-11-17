@@ -9,45 +9,36 @@ import SwiftUI
 
 struct ExpensesListUIView: View {
     
-    @EnvironmentObject var expensesStore: ExpensesStore
+    @ObservedObject var expensesStore: ExpensesStore
     
     @State private var isEditMode: EditMode = .inactive
-    @State private var expense: Expense? = nil
-    @State private var positionIndex: Int = 0
-    @State private var dayIndex: Int = 0
-    @State private var personIndex: Int = 0
+    @State private var expense: ExpenseItem? = nil
     
     var body: some View {
         List {
-            ForEach(expensesStore.expenses.indices) { personIndex in
-                let person = expensesStore.expenses[personIndex]
-                Section(header: Text(person.name)) {
-                    ForEach(person.weeklyExpenses.indices) { dayIndex in
-                        DayRow(dayIndex: dayIndex, personIndex: personIndex, positionIndex: 0, isEditMode: $isEditMode)
-                        let counter = person.weeklyExpenses[dayIndex].dailyExpenses.count
+            ForEach(expensesStore.expenses) { personExpenses in
+                Section(header: Text(personExpenses.wrappedName)) {
+                    ForEach(personExpenses.weeklyExpensesArray) {dailyExpenses in
+                        DayRow(isEditMode: $isEditMode, expensesStore: expensesStore)
+                        let counter = dailyExpenses.expensesArray.count
                         showEmptyRow(counter: counter)
-                        ForEach(person.weeklyExpenses[dayIndex].dailyExpenses.indices, id: \.hashValue) { positionIndex in
-                            ExpenseRow(expense: person.weeklyExpenses[dayIndex].dailyExpenses[positionIndex])
-                                // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
+                        ForEach(dailyExpenses.expensesArray){ expense in
+                            ExpenseRow(expense: expense)
+                                //Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
                                 .contentShape(Rectangle())
                                 // Line below makes tap gesture possible for each row in list
                                 .onTapGesture {
-                                    self.positionIndex = positionIndex
-                                    self.dayIndex = dayIndex
-                                    self.personIndex = personIndex
-                                    expense = person.weeklyExpenses[dayIndex].dailyExpenses[positionIndex]
+                                    self.expense = expense
                                 }
                         }
-                        .onDelete { (indexSet) in
-                            expensesStore.deleteExpense(personIndex: personIndex, dayIndex: dayIndex, at: indexSet)
-                        }
+                        .onDelete(perform: self.expensesStore.deleteExpense)
                     }
                 }
             }
         }
         .sheet(item: $expense, content: { expense in
             let viewModel = ExpenseEditingViewModel(expensesStore: expensesStore)
-            ExpenseEditingView(viewModel: viewModel, personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expense: $expense, operation: .update)
+            ExpenseEditingView(viewModel: viewModel, expense: $expense, operation: .update)
         })
         .navigationBarTitle("Expenses", displayMode: .inline)
         .listStyle(GroupedListStyle())
@@ -63,34 +54,31 @@ struct ExpensesListUIView: View {
 }
 
 struct ExpensesUIView_Previews: PreviewProvider {
-    static let expensesStore = ExpensesStore()
     static var previews: some View {
-        ExpensesListUIView().environmentObject(expensesStore)
+        ExpensesListUIView(expensesStore: ExpensesStore())
     }
 }
 
 struct DayRow: View {
-    @State var dayIndex: Int
-    @State var personIndex: Int
-    @State var positionIndex: Int
-    @State private var expense: Expense? = nil
+    
+    @State private var expense: ExpenseItem? = nil
     
     @Binding var isEditMode: EditMode
     
-    @EnvironmentObject var expensesStore: ExpensesStore
+    @ObservedObject var expensesStore: ExpensesStore
     
     var body: some View {
         HStack {
-            Text("Day \(dayIndex + 1)")
+            Text("Day")
                 .foregroundColor(Color.dayCellTextColor)
             Spacer()
-            Button(action: { expense = Expense(name: "", amount: 0) }) {
+            Button(action: { expense = ExpenseItem(name: "", amount: 0) }) {
                 Image(systemName: "plus")
             }
             .foregroundColor(Color.dayCellTextColor)
             .sheet(item: $expense, content: { expense in
                 let viewModel = ExpenseEditingViewModel(expensesStore: expensesStore)
-                ExpenseEditingView(viewModel: viewModel, personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expense: $expense, operation: .create)
+                ExpenseEditingView(viewModel: viewModel, expense: $expense, operation: .create)
             })
         }
     }
