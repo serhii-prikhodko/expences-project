@@ -49,6 +49,16 @@ extension ExpensesByPersonItem {
     @objc(removeWeeklyExpenses:)
     @NSManaged public func removeFromWeeklyExpenses(_ values: NSSet)
     
+    func getDailyExpensesByID(id: UUID) -> DailyExpensesItem? {
+        for element in weeklyExpensesArray {
+            if id == element.id {
+                return element
+            }
+        }
+        
+        return nil
+    }
+    
 }
 
 extension ExpensesByPersonItem : Identifiable {
