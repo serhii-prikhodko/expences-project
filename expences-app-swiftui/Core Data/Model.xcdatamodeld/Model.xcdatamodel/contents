@@ -2,19 +2,19 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="DailyExpensesItem" representedClassName="DailyExpensesItem" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <relationship name="expenses" toMany="YES" deletionRule="Cascade" destinationEntity="ExpenseItem" inverseName="dailyExpenses" inverseEntity="ExpenseItem"/>
-        <relationship name="expensesByPerson" maxCount="1" deletionRule="Nullify" destinationEntity="ExpensesByPersonItem" inverseName="weeklyExpenses" inverseEntity="ExpensesByPersonItem"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExpenseItem" inverseName="dailyExpenses" inverseEntity="ExpenseItem"/>
+        <relationship name="expensesByPerson" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExpensesByPersonItem" inverseName="weeklyExpenses" inverseEntity="ExpensesByPersonItem"/>
     </entity>
     <entity name="ExpenseItem" representedClassName="ExpenseItem" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="dailyExpenses" maxCount="1" deletionRule="Nullify" destinationEntity="DailyExpensesItem" inverseName="expenses" inverseEntity="DailyExpensesItem"/>
+        <relationship name="dailyExpenses" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DailyExpensesItem" inverseName="expenses" inverseEntity="DailyExpensesItem"/>
     </entity>
     <entity name="ExpensesByPersonItem" representedClassName="ExpensesByPersonItem" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="weeklyExpenses" toMany="YES" deletionRule="Cascade" destinationEntity="DailyExpensesItem" inverseName="expensesByPerson" inverseEntity="DailyExpensesItem"/>
+        <relationship name="weeklyExpenses" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DailyExpensesItem" inverseName="expensesByPerson" inverseEntity="DailyExpensesItem"/>
     </entity>
     <elements>
         <element name="DailyExpensesItem" positionX="-564.6015625" positionY="-283.3359375" width="128" height="88"/>

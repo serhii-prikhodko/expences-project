@@ -18,7 +18,7 @@ struct ExpensesListUIView: View {
     
     var body: some View {
         List {
-            ForEach(expensesStore.expenses.indices) { personIndex in
+            ForEach(expensesStore.expenses.indices, id: \.hashValue) { personIndex in
                 let personExpenses = expensesStore.expenses[personIndex]
                 Section(header: Text(personExpenses.wrappedName)) {
                     ForEach(personExpenses.weeklyExpensesArray.indices) {dayIndex in
