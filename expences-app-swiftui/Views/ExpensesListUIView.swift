@@ -14,16 +14,16 @@ struct ExpensesListUIView: View {
     @State private var isEditMode: EditMode = .inactive
     @State private var expense: ExpenseItem? = nil
     @State private var personIndex: Int = 0
-    @State private var dailyId = UUID()
+    @State private var dayIndex: Int = 0
     
     var body: some View {
         List {
             ForEach(expensesStore.expenses.indices) { personIndex in
                 let personExpenses = expensesStore.expenses[personIndex]
                 Section(header: Text(personExpenses.wrappedName)) {
-                    ForEach(personExpenses.weeklyExpensesArray) {dailyExpenses in
-                        let dailyId = dailyExpenses.id
-                        DayRow(personIndex: personIndex, dailyId: dailyId ?? UUID(), isEditMode: $isEditMode, expensesStore: expensesStore)
+                    ForEach(personExpenses.weeklyExpensesArray.indices) {dayIndex in
+                        let dailyExpenses = personExpenses.weeklyExpensesArray[dayIndex]
+                        DayRow(personIndex: personIndex, dayIndex: dayIndex, isEditMode: $isEditMode, expensesStore: expensesStore)
                         let counter = dailyExpenses.expensesArray.count
                         showEmptyRow(counter: counter)
                         ForEach(dailyExpenses.expensesArray){ expense in
@@ -33,18 +33,18 @@ struct ExpensesListUIView: View {
                                 // Line below makes tap gesture possible for each row in list
                                 .onTapGesture {
                                     self.personIndex = personIndex
-                                    self.dailyId = dailyId ?? UUID()
+                                    self.dayIndex = dayIndex
                                     self.expense = expense
                                 }
                         }
-                        .onDelete(perform: self.expensesStore.deleteExpense)
+                       // .onDelete(perform: self.expensesStore.deleteExpense)
                     }
                 }
             }
         }
         .sheet(item: $expense, content: { expense in
             let viewModel = ExpenseEditingViewModel(expensesStore: expensesStore)
-            ExpenseEditingView(viewModel: viewModel, expense: $expense, personIndex: $personIndex, dailyId: $dailyId, operation: .update)
+            ExpenseEditingView(viewModel: viewModel, expense: $expense, personIndex: $personIndex, dayIndex: $dayIndex, operation: .update)
         })
         .navigationBarTitle("Expenses", displayMode: .inline)
         .listStyle(GroupedListStyle())
@@ -69,7 +69,7 @@ struct DayRow: View {
     
     @State private var expense: ExpenseItem? = nil
     @State var personIndex: Int
-    @State var dailyId: UUID
+    @State var dayIndex: Int
     
     @Binding var isEditMode: EditMode
     
@@ -86,7 +86,7 @@ struct DayRow: View {
             .foregroundColor(Color.dayCellTextColor)
             .sheet(item: $expense, content: { expense in
                 let viewModel = ExpenseEditingViewModel(expensesStore: expensesStore)
-                ExpenseEditingView(viewModel: viewModel, expense: $expense, personIndex: $personIndex, dailyId: $dailyId, operation: .create)
+                ExpenseEditingView(viewModel: viewModel, expense: $expense, personIndex: $personIndex, dayIndex: $dayIndex, operation: .create)
             })
         }
     }

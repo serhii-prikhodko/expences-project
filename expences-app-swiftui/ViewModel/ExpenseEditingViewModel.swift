@@ -20,7 +20,7 @@ class ExpenseEditingViewModel: ObservableObject {
         self.expensesStore = expensesStore
     }
     
-    public func handleExpense(operation: OperationType, expense: ExpenseItem?, personIndex: Int, dailyId: UUID, action: () -> Void) {
+    public func handleExpense(operation: OperationType, expense: ExpenseItem?, personIndex: Int, dayIndex: Int, action: () -> Void) {
         let enteredAmount = checkEnteredValue(value: amount)
         guard let amountValue = enteredAmount else {
             amount = ""
@@ -32,9 +32,10 @@ class ExpenseEditingViewModel: ObservableObject {
         
         switch operation {
         case .create:
-            expensesStore.addExpense(name: name, amount: amountValue, personIndex: personIndex, dailyId: dailyId)
+            expensesStore.addExpense(name: name, amount: amountValue, personIndex: personIndex, index: dayIndex)
         case .update:
-            expensesStore.updateExpense(expense: expense, name: name, amount: amountValue)
+            print("uncomment this code")
+//            expensesStore.updateExpense(expense: expense, name: name, amount: amountValue)
         }
         
         action()

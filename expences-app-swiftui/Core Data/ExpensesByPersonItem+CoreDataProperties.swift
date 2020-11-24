@@ -31,7 +31,6 @@ extension ExpensesByPersonItem {
             $0.id < $1.id
         }
     }
-    
 }
 
 // MARK: Generated accessors for weeklyExpenses
@@ -49,14 +48,9 @@ extension ExpensesByPersonItem {
     @objc(removeWeeklyExpenses:)
     @NSManaged public func removeFromWeeklyExpenses(_ values: NSSet)
     
-    func getDailyExpensesByID(id: UUID) -> DailyExpensesItem? {
-        for element in weeklyExpensesArray {
-            if id == element.id {
-                return element
-            }
-        }
+    func getDailyExpensesByIndex(index: Int) -> DailyExpensesItem {
         
-        return nil
+        return weeklyExpensesArray[index]
     }
     
 }

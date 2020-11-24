@@ -27,7 +27,6 @@ extension DailyExpensesItem {
             $0.wrappedName < $1.wrappedName
         }
     }
-    
 }
 
 // MARK: Generated accessors for expenses
