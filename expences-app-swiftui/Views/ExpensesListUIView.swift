@@ -37,7 +37,9 @@ struct ExpensesListUIView: View {
                                     self.expense = expense
                                 }
                         }
-                       // .onDelete(perform: self.expensesStore.deleteExpense)
+                        .onDelete { (indexSet) in
+                            expensesStore.deleteExpense(personIndex: personIndex, dayIndex: dayIndex, at: indexSet)
+                        }
                     }
                 }
             }

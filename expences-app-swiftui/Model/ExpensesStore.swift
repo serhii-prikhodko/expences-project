@@ -68,15 +68,16 @@ class ExpensesStore: ObservableObject {
 //        saveContext()
 //    }
 //    
-//    func deleteExpense(personIndex: Int, dayIndex: Int, at offsets: IndexSet) {
-//        
-//        for index in offsets {
-//            guard let expense = expenses[personIndex].weeklyExpenses?[dayIndex].dailyExpenses?[index] else { return }
-//            expensesController.managedObjectContext.delete(expense)
-//        }
-//        
-//        saveContext()
-//    }
+    func deleteExpense(personIndex: Int, dayIndex: Int, at offsets: IndexSet) {
+        let moc = CoreDataStack.shared.mainContext
+        
+        for index in offsets {
+            let expense = expenses[personIndex].getDailyExpensesByIndex(index: dayIndex).expensesArray[index]
+            moc.delete(expense)
+        }
+        
+        saveContext()
+    }
 //    
 //    func addPerson(name: String) {
 //        let person = ExpensesByPersonItem(context: expensesController.managedObjectContext)
