@@ -18,6 +18,10 @@ struct ExpensesListUIView: View {
     
     var body: some View {
         List {
+            // Check if data is empty and show placeholder text
+            if expensesStore.expenses.isEmpty {
+                EmptyScreenView(text: "There is no any items")
+            }
             ForEach(expensesStore.expenses.indices, id: \.hashValue) { personIndex in
                 let personExpenses = expensesStore.expenses[personIndex]
                 Section(header: Text(personExpenses.wrappedName)) {

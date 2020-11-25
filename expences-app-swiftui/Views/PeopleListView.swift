@@ -19,6 +19,10 @@ struct PeopleListView: View {
     
     var body: some View {
         List {
+            // Check if data is empty and show placeholder text
+            if expensesStore.expenses.isEmpty {
+                EmptyScreenView(text: "There is no any persons. Try to add one")
+            }
             ForEach(expensesStore.expenses.indices, id: \.hashValue) { personIndex in
                 let personName = expensesStore.expenses[personIndex].wrappedName
                 NavigationLink(destination: PersonExpensesView(expensesStore: expensesStore, personIndex: personIndex, personName: personName)) {

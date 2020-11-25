@@ -34,6 +34,7 @@
 		1BBD6A8F2562784200DCEA7A /* DailyExpensesItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD6A892562784200DCEA7A /* DailyExpensesItem+CoreDataProperties.swift */; };
 		1BBD6A902562784200DCEA7A /* ExpenseItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD6A8A2562784200DCEA7A /* ExpenseItem+CoreDataClass.swift */; };
 		1BBD6A912562784200DCEA7A /* ExpenseItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBD6A8B2562784200DCEA7A /* ExpenseItem+CoreDataProperties.swift */; };
+		1BEF63BE256EC47900E2FB44 /* EmptyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF63BD256EC47900E2FB44 /* EmptyScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		1BBD6A892562784200DCEA7A /* DailyExpensesItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyExpensesItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1BBD6A8A2562784200DCEA7A /* ExpenseItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExpenseItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1BBD6A8B2562784200DCEA7A /* ExpenseItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExpenseItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1BEF63BD256EC47900E2FB44 /* EmptyScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 			children = (
 				1B6AC891252F1A4B00486F74 /* LaunchScreenView.swift */,
 				1B6AC8D6252F323200486F74 /* ExpensesListUIView.swift */,
+				1BEF63BD256EC47900E2FB44 /* EmptyScreenView.swift */,
 				1B970CBC2551559D00A655BC /* NewPersonView.swift */,
 				1B7ECAC825502ECC00216371 /* PeopleListView.swift */,
 				1B7ECAD625503F1400216371 /* PersonExpensesView.swift */,
@@ -384,6 +387,7 @@
 				1B970CBD2551559D00A655BC /* NewPersonView.swift in Sources */,
 				1B7ECAC925502ECC00216371 /* PeopleListView.swift in Sources */,
 				1BBD6A8D2562784200DCEA7A /* ExpensesByPersonItem+CoreDataProperties.swift in Sources */,
+				1BEF63BE256EC47900E2FB44 /* EmptyScreenView.swift in Sources */,
 				1BAC207B255555EF009E69FE /*  ColorScheme.swift in Sources */,
 				1B3399D72530440F00CA07CA /* ExpenseRow.swift in Sources */,
 				1BBCE0F02562735C005D3AA7 /* Model.xcdatamodeld in Sources */,
