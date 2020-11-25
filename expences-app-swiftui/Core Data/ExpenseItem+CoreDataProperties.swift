@@ -17,15 +17,17 @@ extension ExpenseItem {
     }
     
     @NSManaged public var amount: Double
+    @NSManaged public var date: Date
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?
     @NSManaged public var dailyExpenses: DailyExpensesItem?
     
-    convenience init(name: String, id: UUID = UUID(), amount: Double, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+    convenience init(name: String, id: UUID = UUID(), amount: Double, date: Date = Date(), context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.init(context: context)
         self.id = id
         self.name = name
         self.amount = amount
+        self.date = date
     }
     
     public var wrappedName: String {
