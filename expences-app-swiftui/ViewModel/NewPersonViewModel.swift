@@ -21,11 +21,9 @@ class NewPersonViewModel: ObservableObject {
     public func handlePerson(operation: OperationType, personIndex: Int) {
         switch operation {
         case .create:
-            print("Implement create operation")
-//            expensesStore.addPerson(name: personName)
+            expensesStore.addPerson(name: personName)
         case .update:
-            print("Implement update operation")
-//            expensesStore.updatePersonName(name: personName, personIndex: personIndex)
+            expensesStore.updatePersonName(name: personName, personIndex: personIndex)
         }
     }
     

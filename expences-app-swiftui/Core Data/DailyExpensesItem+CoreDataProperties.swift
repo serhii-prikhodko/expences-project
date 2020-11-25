@@ -43,7 +43,6 @@ extension DailyExpensesItem {
     
     @objc(removeExpenses:)
     @NSManaged public func removeFromExpenses(_ values: NSSet)
-    
 }
 
 extension DailyExpensesItem : Identifiable {

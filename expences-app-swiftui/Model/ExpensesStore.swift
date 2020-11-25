@@ -48,18 +48,6 @@ class ExpensesStore: ObservableObject {
         saveContext()
     }
     
-    func createMocData() {
-        let moc = CoreDataStack.shared.mainContext
-        let expense = ExpenseItem(name: "First Item", amount: 2.23)
-        let dailyExpenses = DailyExpensesItem(context: moc)
-        dailyExpenses.addToExpenses(expense)
-        let expensesByPerson = ExpensesByPersonItem(context: moc)
-        expensesByPerson.name = "Mike"
-        expensesByPerson.addToWeeklyExpenses(dailyExpenses)
-        
-        saveContext()
-    }
-    
     func updateExpense(expense: ExpenseItem, name: String, amount: Double) {
         expense.name = name
         expense.amount = amount
@@ -79,19 +67,22 @@ class ExpensesStore: ObservableObject {
     }
     
     // MARK: CRUD methods for person
-//    
-//    func addPerson(name: String) {
-//        let person = ExpensesByPersonItem(context: expensesController.managedObjectContext)
-//        person.name = name
-//        
-//        let dayOne = DailyExpensesItem(context: expensesController.managedObjectContext)
-//        dayOne.expenses = []
-//        
-//        person.weeklyExpenses = NSSet(array: [dayOne])
-//        
-//        saveContext()
-//    }
-//    
+    func addPerson(name: String) {
+        let moc = CoreDataStack.shared.mainContext
+        let person = ExpensesByPersonItem(context: moc)
+        person.name = name
+        
+        let dayOne = DailyExpensesItem(context: moc)
+        let dayTwo = DailyExpensesItem(context: moc)
+        let dayThree = DailyExpensesItem(context: moc)
+        
+        person.addToWeeklyExpenses(dayOne)
+        person.addToWeeklyExpenses(dayTwo)
+        person.addToWeeklyExpenses(dayThree)
+        
+        saveContext()
+    }
+    
     func deletePerson(at offsets: IndexSet) {
         let moc = CoreDataStack.shared.mainContext
         
@@ -102,10 +93,10 @@ class ExpensesStore: ObservableObject {
         
         saveContext()
     }
-//    
-//    func updatePersonName(name: String, personIndex: Int) {
-//        expenses[personIndex].name = name
-//        
-//        saveContext()
-//    }
+    
+    func updatePersonName(name: String, personIndex: Int) {
+        expenses[personIndex].name = name
+        
+        saveContext()
+    }
 }

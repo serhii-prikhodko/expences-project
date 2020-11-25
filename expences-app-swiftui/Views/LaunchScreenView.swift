@@ -27,9 +27,6 @@ struct LaunchScreenView: View {
                     }
                     .navigationBarHidden(true)
                 }
-                .onAppear {
-                    expensesStore.createMocData()
-                }
             }
             .navigationViewStyle(StackNavigationViewStyle())
         }
