@@ -28,14 +28,16 @@ class ExpenseEditingViewModel: ObservableObject {
             
             return
         }
-        let expense = ExpenseItem(name: name, amount: amountValue)
+        
+        guard let expense =  expense else {
+            return
+        }
         
         switch operation {
         case .create:
             expensesStore.addExpense(name: name, amount: amountValue, personIndex: personIndex, index: dayIndex)
         case .update:
-            print("uncomment this code")
-//            expensesStore.updateExpense(expense: expense, name: name, amount: amountValue)
+            expensesStore.updateExpense(expense: expense, name: name, amount: amountValue)
         }
         
         action()

@@ -59,15 +59,13 @@ class ExpensesStore: ObservableObject {
         saveContext()
     }
     
-//    func updateExpense(personIndex: Int, dayIndex: Int, positionIndex: Int, name: String, amount: Double) {
-//        let expense = ExpenseItem(context: expensesController.managedObjectContext)
-//        expense.name = name
-//        expense.amount = amount
-//        expenses[personIndex].weeklyExpenses?[dayIndex].dailyExpenses?[positionIndex] = expense
-//        
-//        saveContext()
-//    }
-//    
+    func updateExpense(expense: ExpenseItem, name: String, amount: Double) {
+        expense.name = name
+        expense.amount = amount
+        
+        saveContext()
+    }
+    
     func deleteExpense(personIndex: Int, dayIndex: Int, at offsets: IndexSet) {
         let moc = CoreDataStack.shared.mainContext
         

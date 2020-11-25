@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExpenseRow: View {
     
-    var expense: ExpenseItem
+    @ObservedObject var expense: ExpenseItem
     
     var body: some View {
         HStack {
