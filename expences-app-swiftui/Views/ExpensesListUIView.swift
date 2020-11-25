@@ -79,7 +79,7 @@ struct DayRow: View {
     
     var body: some View {
         HStack {
-            Text("Day")
+            Text("Day \(dayIndex + 1)")
                 .foregroundColor(Color.dayCellTextColor)
             Spacer()
             Button(action: { expense = ExpenseItem(name: "", amount: 0) }) {
