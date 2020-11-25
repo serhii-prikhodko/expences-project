@@ -9,6 +9,7 @@ import CoreData
 
 class ExpensesStore: ObservableObject {
     
+    // MARK: - Properties
     @Published var expenses: [ExpensesByPersonItem] = []
     
     init() {
@@ -38,7 +39,7 @@ class ExpensesStore: ObservableObject {
         }
     }
     
-    
+    // MARK: CRUD methods for expense
     func addExpense(name: String, amount: Double, personIndex: Int, index: Int) {
         let expense = ExpenseItem(name: name, amount: amount)
         
@@ -76,6 +77,8 @@ class ExpensesStore: ObservableObject {
         
         saveContext()
     }
+    
+    // MARK: CRUD methods for person
 //    
 //    func addPerson(name: String) {
 //        let person = ExpensesByPersonItem(context: expensesController.managedObjectContext)
@@ -89,14 +92,16 @@ class ExpensesStore: ObservableObject {
 //        saveContext()
 //    }
 //    
-//    func deletePerson(at offsets: IndexSet) {
-//        for index in offsets {
-//            let person = expenses[index]
-//            expensesController.managedObjectContext.delete(person)
-//        }
-//        
-//        saveContext()
-//    }
+    func deletePerson(at offsets: IndexSet) {
+        let moc = CoreDataStack.shared.mainContext
+        
+        for index in offsets {
+            let person = expenses[index]
+            moc.delete(person)
+        }
+        
+        saveContext()
+    }
 //    
 //    func updatePersonName(name: String, personIndex: Int) {
 //        expenses[personIndex].name = name

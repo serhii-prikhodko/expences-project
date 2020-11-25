@@ -20,11 +20,11 @@ struct LaunchScreenView: View {
                             .frame(width: geometry.size.width/2)
                             .titleStyle()
                     }
-//                    NavigationLink(destination: PeopleListView()) {
-//                        Text("Show People")
-//                            .frame(width: geometry.size.width/2)
-//                            .titleStyle()
-//                    }
+                    NavigationLink(destination: PeopleListView(expensesStore: expensesStore)) {
+                        Text("Show People")
+                            .frame(width: geometry.size.width/2)
+                            .titleStyle()
+                    }
                     .navigationBarHidden(true)
                 }
                 .onAppear {

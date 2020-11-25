@@ -7,38 +7,40 @@
 
 import Foundation
 
-//class NewPersonViewModel: ObservableObject {
-//    
-//    @Published var expensesStore: ExpensesStore
-//    @Published var personName: String = ""
-//    @Published var navigationText = ""
-//    @Published var actionButtonText = ""
-//    
-//    init(expensesStore: ExpensesStore) {
-//        self.expensesStore = expensesStore
-//    }
-//    
-//    public func handlePerson(operation: OperationType, personIndex: Int) {
-//        switch operation {
-//        case .create:
+class NewPersonViewModel: ObservableObject {
+    
+    @Published var expensesStore: ExpensesStore
+    @Published var personName: String = ""
+    @Published var navigationText = ""
+    @Published var actionButtonText = ""
+    
+    init(expensesStore: ExpensesStore) {
+        self.expensesStore = expensesStore
+    }
+    
+    public func handlePerson(operation: OperationType, personIndex: Int) {
+        switch operation {
+        case .create:
+            print("Implement create operation")
 //            expensesStore.addPerson(name: personName)
-//        case .update:
+        case .update:
+            print("Implement update operation")
 //            expensesStore.updatePersonName(name: personName, personIndex: personIndex)
-//        }
-//    }
-//    
-//    public func checkOperationType(operation: OperationType) {
-//        switch operation {
-//        case .create:
-//            navigationText = "Add New Person"
-//            actionButtonText = "Create"
-//        case .update:
-//            navigationText = "Update Person"
-//            actionButtonText = "Save"
-//        }
-//    }
-//    
-//    public func setPersonNameInTextField(personName: String) {
-//        self.personName = personName
-//    }
-//}
+        }
+    }
+    
+    public func checkOperationType(operation: OperationType) {
+        switch operation {
+        case .create:
+            navigationText = "Add New Person"
+            actionButtonText = "Create"
+        case .update:
+            navigationText = "Update Person"
+            actionButtonText = "Save"
+        }
+    }
+    
+    public func setPersonNameInTextField(personName: String) {
+        self.personName = personName
+    }
+}
