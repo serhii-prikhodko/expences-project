@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="DailyExpensesItem" representedClassName="DailyExpensesItem" syncable="YES">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ExpenseItem" inverseName="dailyExpenses" inverseEntity="ExpenseItem"/>
         <relationship name="expensesByPerson" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExpensesByPersonItem" inverseName="weeklyExpenses" inverseEntity="ExpensesByPersonItem"/>
@@ -18,7 +19,7 @@
         <relationship name="weeklyExpenses" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DailyExpensesItem" inverseName="expensesByPerson" inverseEntity="DailyExpensesItem"/>
     </entity>
     <elements>
-        <element name="DailyExpensesItem" positionX="-564.6015625" positionY="-283.3359375" width="128" height="88"/>
+        <element name="DailyExpensesItem" positionX="-564.6015625" positionY="-283.3359375" width="128" height="103"/>
         <element name="ExpenseItem" positionX="-212.265625" positionY="0.82421875" width="128" height="118"/>
         <element name="ExpensesByPersonItem" positionX="-791.8359375" positionY="-437.40234375" width="128" height="88"/>
     </elements>

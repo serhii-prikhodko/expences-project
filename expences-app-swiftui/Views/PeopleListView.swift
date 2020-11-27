@@ -19,7 +19,7 @@ struct PeopleListView: View {
     
     var body: some View {
         List {
-            // Check if data is empty and show placeholder text
+            // Check if data is empty - show placeholder text
             if expensesStore.expenses.isEmpty {
                 EmptyScreenView(text: "There is no any persons. Try to add one")
             }

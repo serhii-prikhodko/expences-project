@@ -72,9 +72,9 @@ class ExpensesStore: ObservableObject {
         let person = ExpensesByPersonItem(context: moc)
         person.name = name
         
-        let dayOne = DailyExpensesItem(context: moc)
-        let dayTwo = DailyExpensesItem(context: moc)
-        let dayThree = DailyExpensesItem(context: moc)
+        let dayOne = DailyExpensesItem(id: UUID(), date: Date(), context: moc)
+        let dayTwo = DailyExpensesItem(id: UUID(), date: Date(), context: moc)
+        let dayThree = DailyExpensesItem(id: UUID(), date: Date(), context: moc)
         
         person.addToWeeklyExpenses(dayOne)
         person.addToWeeklyExpenses(dayTwo)

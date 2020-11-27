@@ -28,7 +28,7 @@ extension ExpensesByPersonItem {
         let set = weeklyExpenses as? Set<DailyExpensesItem> ?? []
         
         return set.sorted {
-            $0.id < $1.id
+            $0.date < $1.date
         }
     }
 }

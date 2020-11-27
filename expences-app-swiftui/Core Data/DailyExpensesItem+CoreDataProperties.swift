@@ -17,6 +17,7 @@ extension DailyExpensesItem {
     }
     
     @NSManaged public var id: UUID?
+    @NSManaged public var date: Date
     @NSManaged public var expenses: NSSet?
     @NSManaged public var expensesByPerson: ExpensesByPersonItem?
     
@@ -26,6 +27,11 @@ extension DailyExpensesItem {
         return set.sorted {
             $0.date < $1.date
         }
+    }
+    convenience init(id: UUID, date: Date, context: NSManagedObjectContext) {
+        self.init(context: context)
+        self.id = id
+        self.date = date
     }
 }
 
