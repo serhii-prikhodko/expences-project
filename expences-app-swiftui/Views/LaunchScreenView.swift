@@ -8,16 +8,19 @@
 import SwiftUI
 
 struct LaunchScreenView: View {
+    
+    @ObservedObject var expensesStore = ExpensesStore()
+    
     var body: some View {
         GeometryReader { geometry in
             NavigationView {
                 VStack(spacing: 20) {
-                    NavigationLink(destination: ExpensesListUIView()) {
+                    NavigationLink(destination: ExpensesListUIView(expensesStore: expensesStore)) {
                         Text("Show Expenses")
                             .frame(width: geometry.size.width/2)
                             .titleStyle()
                     }
-                    NavigationLink(destination: PeopleListView()) {
+                    NavigationLink(destination: PeopleListView(expensesStore: expensesStore)) {
                         Text("Show People")
                             .frame(width: geometry.size.width/2)
                             .titleStyle()

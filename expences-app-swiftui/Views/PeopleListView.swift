@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PeopleListView: View {
     
-    @EnvironmentObject var expensesStore: ExpensesStore
+    @ObservedObject var expensesStore: ExpensesStore
     
     @State private var isEditMode: EditMode = .inactive
     @State private var showModal: Bool = false
@@ -19,10 +19,14 @@ struct PeopleListView: View {
     
     var body: some View {
         List {
+            // Check if data is empty - show placeholder text
+            if expensesStore.expenses.isEmpty {
+                EmptyScreenView(text: "There is no any persons. Try to add one")
+            }
             ForEach(expensesStore.expenses.indices, id: \.hashValue) { personIndex in
-                let personName = expensesStore.expenses[personIndex].name
-                NavigationLink(destination: PersonExpensesView(personIndex: personIndex, personName: personName)) {
-                    Text(expensesStore.expenses[personIndex].name)
+                let personName = expensesStore.expenses[personIndex].wrappedName
+                NavigationLink(destination: PersonExpensesView(expensesStore: expensesStore, personIndex: personIndex, personName: personName)) {
+                    Text(expensesStore.expenses[personIndex].wrappedName)
                 }
                 // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
                 .contentShape(Rectangle())
@@ -65,6 +69,6 @@ struct PeopleListView: View {
 
 struct PersonsListView_Previews: PreviewProvider {
     static var previews: some View {
-        PeopleListView()
+        PeopleListView(expensesStore: ExpensesStore())
     }
 }

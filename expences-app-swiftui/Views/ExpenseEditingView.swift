@@ -11,10 +11,9 @@ struct ExpenseEditingView: View {
     
     @ObservedObject var viewModel: ExpenseEditingViewModel
     
+    @Binding var expense: ExpenseItem?
     @Binding var personIndex: Int
     @Binding var dayIndex: Int
-    @Binding var positionIndex: Int
-    @Binding var expense: Expense?
     
     let operation: OperationType
     let alertTitle: String = "Information"
@@ -43,7 +42,7 @@ struct ExpenseEditingView: View {
                     },
                 trailing:
                     Button(action: {
-                        viewModel.handleExpense(operation: operation, personIndex: personIndex, dayIndex: dayIndex, positionIndex: positionIndex, action: dismissView)
+                        viewModel.handleExpense(operation: operation, expense: expense, personIndex: personIndex, dayIndex: dayIndex, action: dismissView)
                     }) {
                         Text(viewModel.actionButtonText)
                     }
@@ -63,6 +62,6 @@ struct ExpenseEditingView: View {
 struct AddExpense_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = ExpenseEditingViewModel(expensesStore: ExpensesStore())
-        ExpenseEditingView(viewModel: viewModel, personIndex: .constant(0), dayIndex: .constant(0), positionIndex: .constant(0), expense: .constant(Expense(name: "Juice", amount: 2.32)), operation: .create)
+        ExpenseEditingView(viewModel: viewModel, expense: .constant(ExpenseItem(name: "Apple", amount: 1.25)), personIndex: .constant(0), dayIndex: .constant(0), operation: .create)
     }
 }

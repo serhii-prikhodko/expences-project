@@ -9,10 +9,12 @@ import SwiftUI
 
 @main
 struct expences_app_swiftuiApp: App {
-    var expensesStore = ExpensesStore()
+   
+    let context = CoreDataStack.shared.container.viewContext
+    
     var body: some Scene {
         WindowGroup {
-            LaunchScreenView().environmentObject(expensesStore)
+            LaunchScreenView().environment(\.managedObjectContext, context)
         }
     }
 }

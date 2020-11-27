@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ExpenseRow: View {
     
-    var expense: Expense
+    @ObservedObject var expense: ExpenseItem
     
     var body: some View {
         HStack {
-            Text(expense.name)
+            Text(expense.wrappedName)
                 .fontWeight(.bold)
                 .padding(.leading)
             Spacer()
@@ -24,6 +24,6 @@ struct ExpenseRow: View {
 
 struct ExpenseRow_Previews: PreviewProvider {
     static var previews: some View {
-        ExpenseRow(expense: Expense(name: "Apples", amount: 9.00))
+        ExpenseRow(expense: ExpenseItem(name: "Apples", amount: 9.00))
     }
 }

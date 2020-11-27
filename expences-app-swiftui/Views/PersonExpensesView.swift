@@ -9,10 +9,10 @@ import SwiftUI
 
 struct PersonExpensesView: View {
     
-    @EnvironmentObject var expensesStore: ExpensesStore
+    @ObservedObject var expensesStore: ExpensesStore
     
     @State private var isEditMode: EditMode = .inactive
-    @State private var expense: Expense? = nil
+    @State private var expense: ExpenseItem? = nil
     @State var personIndex: Int
     @State private var dayIndex: Int = 0
     @State private var positionIndex: Int = 0
@@ -21,20 +21,19 @@ struct PersonExpensesView: View {
     
     var body: some View {
         List {
-            ForEach(expensesStore.expenses[personIndex].weeklyExpenses.indices) { dayIndex in
-                let dailyExpenses = expensesStore.expenses[personIndex].weeklyExpenses[dayIndex]
-                DayRow(dayIndex: dayIndex, personIndex: personIndex, positionIndex: 0, isEditMode: $isEditMode)
-                let counter = dailyExpenses.dailyExpenses.count
+            ForEach(expensesStore.expenses[personIndex].weeklyExpensesArray.indices) {dayIndex in
+                let dailyExpenses = expensesStore.expenses[personIndex].weeklyExpensesArray[dayIndex]
+                DayRow(personIndex: personIndex, dayIndex: dayIndex, isEditMode: $isEditMode, expensesStore: expensesStore)
+                let counter = dailyExpenses.expensesArray.count
                 showEmptyRow(counter: counter)
-                ForEach(dailyExpenses.dailyExpenses.indices, id: \.hashValue) { positionIndex in
-                    ExpenseRow(expense: dailyExpenses.dailyExpenses[positionIndex])
-                        // Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
+                ForEach(dailyExpenses.expensesArray){ expense in
+                    ExpenseRow(expense: expense)
+                        //Line below makes tapable whole raw, otherwise spacer will be inactive for tapping
                         .contentShape(Rectangle())
                         // Line below makes tap gesture possible for each row in list
                         .onTapGesture {
-                            self.positionIndex = positionIndex
                             self.dayIndex = dayIndex
-                            expense = dailyExpenses.dailyExpenses[positionIndex]
+                            self.expense = expense
                         }
                 }
                 .onDelete { (indexSet) in
@@ -44,7 +43,7 @@ struct PersonExpensesView: View {
         }
         .sheet(item: $expense, content: { expense in
             let viewModel = ExpenseEditingViewModel(expensesStore: expensesStore)
-            ExpenseEditingView(viewModel: viewModel, personIndex: $personIndex, dayIndex: $dayIndex, positionIndex: $positionIndex, expense: $expense, operation: .update)
+            ExpenseEditingView(viewModel: viewModel, expense: $expense, personIndex: $personIndex, dayIndex: $dayIndex, operation: .update)
         })
         .navigationBarTitle(personName, displayMode: .inline)
         .listStyle(GroupedListStyle())
