@@ -1,9 +1,8 @@
 //
 //  CoreDataStack.swift
-//  JournalCoreDataSwiftUI
+//  expences-app-swiftui
 //
-//  Created by Nelson Gonzalez on 12/10/19.
-//  Copyright © 2019 Nelson Gonzalez. All rights reserved.
+//  Created by Serhii Prykhodko on 16.11.2020.
 //
 
 import Foundation

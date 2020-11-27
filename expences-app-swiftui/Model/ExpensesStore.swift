@@ -10,6 +10,7 @@ import CoreData
 class ExpensesStore: ObservableObject {
     
     // MARK: - Properties
+    
     @Published var expenses: [ExpensesByPersonItem] = []
     
     init() {
@@ -18,9 +19,9 @@ class ExpensesStore: ObservableObject {
     
      
     func saveContext() {
-        let moc = CoreDataStack.shared.mainContext
+        let mainContext = CoreDataStack.shared.mainContext
         do {
-            try moc.save()
+            try mainContext.save()
             getExpenses()
          
         } catch {
@@ -30,16 +31,17 @@ class ExpensesStore: ObservableObject {
     
     func getExpenses() {
         let fetchRequest: NSFetchRequest<ExpensesByPersonItem> = ExpensesByPersonItem.fetchRequest()
-        let moc = CoreDataStack.shared.mainContext
+        let mainContext = CoreDataStack.shared.mainContext
         
         do {
-            expenses = try moc.fetch(fetchRequest)
+            expenses = try mainContext.fetch(fetchRequest)
         } catch {
             NSLog("Error fetching expenses: \(error)")
         }
     }
     
     // MARK: CRUD methods for expense
+    
     func addExpense(name: String, amount: Double, personIndex: Int, index: Int) {
         let expense = ExpenseItem(name: name, amount: amount)
         
@@ -56,25 +58,26 @@ class ExpensesStore: ObservableObject {
     }
     
     func deleteExpense(personIndex: Int, dayIndex: Int, at offsets: IndexSet) {
-        let moc = CoreDataStack.shared.mainContext
+        let mainContext = CoreDataStack.shared.mainContext
         
         for index in offsets {
             let expense = expenses[personIndex].getDailyExpensesByIndex(index: dayIndex).expensesArray[index]
-            moc.delete(expense)
+            mainContext.delete(expense)
         }
         
         saveContext()
     }
     
     // MARK: CRUD methods for person
+    
     func addPerson(name: String) {
-        let moc = CoreDataStack.shared.mainContext
-        let person = ExpensesByPersonItem(context: moc)
+        let mainContext = CoreDataStack.shared.mainContext
+        let person = ExpensesByPersonItem(context: mainContext)
         person.name = name
         
-        let dayOne = DailyExpensesItem(id: UUID(), date: Date(), context: moc)
-        let dayTwo = DailyExpensesItem(id: UUID(), date: Date(), context: moc)
-        let dayThree = DailyExpensesItem(id: UUID(), date: Date(), context: moc)
+        let dayOne = DailyExpensesItem(id: UUID(), date: Date(), context: mainContext)
+        let dayTwo = DailyExpensesItem(id: UUID(), date: Date(), context: mainContext)
+        let dayThree = DailyExpensesItem(id: UUID(), date: Date(), context: mainContext)
         
         person.addToWeeklyExpenses(dayOne)
         person.addToWeeklyExpenses(dayTwo)
@@ -84,11 +87,11 @@ class ExpensesStore: ObservableObject {
     }
     
     func deletePerson(at offsets: IndexSet) {
-        let moc = CoreDataStack.shared.mainContext
+        let mainContext = CoreDataStack.shared.mainContext
         
         for index in offsets {
             let person = expenses[index]
-            moc.delete(person)
+            mainContext.delete(person)
         }
         
         saveContext()
